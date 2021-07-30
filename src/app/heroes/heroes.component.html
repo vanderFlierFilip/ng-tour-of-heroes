@@ -1,0 +1,27 @@
+<cdk-accordion class="accordion">
+  <cdk-accordion-item
+    #accordionItem="cdkAccordionItem"
+    class="accordion-item"
+    *ngFor="let hero of heroes; let index = index"
+    (click)="onSelectHero(hero)"
+    tabindex="0"
+    [attr.id]="'accordion-header-' + index"
+  >
+    <div
+      class="accordion-item-header"
+      (click)="accordionItem.toggle()"
+      [class.selected]="selectedHero === hero"
+    >
+      <span>{{ hero.id }}</span>
+      {{ hero.name }}
+    </div>
+    <div
+      class="accordion-item-body"
+      [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + index"
+      *ngIf="selectedHero"
+    >
+      <hrs-hero-details [hero]="selectedHero"></hrs-hero-details>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>

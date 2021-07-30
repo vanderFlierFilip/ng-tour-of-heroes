@@ -1,4 +1,6 @@
 # NgTourOfHeroes
+The official angular tutorial from the [Angular Docs](https://angular.io/tutorial), with Angular Material styles and later possibly with [NgRx](https://ngrx.io/docs) state management.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 

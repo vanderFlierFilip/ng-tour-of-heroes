@@ -1,5 +1,6 @@
+import { HeroDetailsContentDirective } from './../hero-details/hero-details-content.directive';
 import { HEROES } from './../mock-heroes';
-import { Component, OnInit } from '@angular/core';
+import { Component, ContentChild, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroesService } from '../heroes.service';
 import { MessagesService } from '../messages.service';
@@ -12,6 +13,8 @@ export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
   heroes: Hero[] = [];
   isSelected = false;
+  @ContentChild(HeroDetailsContentDirective)
+  content!: HeroDetailsContentDirective;
   constructor(
     private heroesService: HeroesService,
     private messagesService: MessagesService

@@ -10,6 +10,14 @@
     <button mat-button [routerLink]="['/dashboard']">Dashboard</button>
 
     <span class="spacer"></span>
-    <mat-icon [matBadge]="getLength()" matBadgeColor="warn">messages</mat-icon>
+    <mat-icon
+      [matBadge]="getLength()"
+      matBadgeColor="warn"
+      #tooltip="matTooltip"
+      [matTooltip]="msgToolTip"
+      routerLink="/dashboard"
+      style="cursor: pointer"
+      >messages</mat-icon
+    >
   </mat-toolbar-row>
 </mat-toolbar>

@@ -24,7 +24,9 @@
         [attr.id]="'accordion-body-' + index"
         *ngIf="selectedHero"
       >
-        <hrs-hero-details [hero]="selectedHero"></hrs-hero-details>
+        <ng-template #heroDetailsContent> </ng-template>
+
+        <!-- <hrs-hero-details [hero]="selectedHero"></hrs-hero-details> -->
       </div>
     </cdk-accordion-item>
   </cdk-accordion>

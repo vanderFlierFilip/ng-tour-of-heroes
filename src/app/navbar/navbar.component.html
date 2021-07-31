@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="first-row">
+    <img src="../assets/angular_whiteTransparent.png" class="logo" />
+    <h1>{{ title }}</h1>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <button mat-button [routerLink]="['/heroes']">Heroes</button>
+
+    <button mat-button [routerLink]="['/dashboard']">Dashboard</button>
+
+    <span class="spacer"></span>
+    <mat-icon [matBadge]="getLength()" matBadgeColor="warn">messages</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -10,9 +10,20 @@ import { FormsModule } from '@angular/forms';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { MessagesComponent } from './messages/messages.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroesMenuComponent } from './heroes-menu/heroes-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, HeroesComponent, HeroDetailsComponent, MessagesComponent],
+  declarations: [
+    AppComponent,
+    HeroesComponent,
+    HeroDetailsComponent,
+    MessagesComponent,
+    NavbarComponent,
+    DashboardComponent,
+    HeroesMenuComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

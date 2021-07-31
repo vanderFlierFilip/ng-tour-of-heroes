@@ -1,5 +1,4 @@
-<mat-toolbar color="primary">
-  <h1>{{ title }}</h1>
-</mat-toolbar>
-<hrs-heroes></hrs-heroes>
-<hrs-messages></hrs-messages>
+<hrs-navbar [appTitle]="title"></hrs-navbar>
+<div style="margin-top: 20px">
+  <router-outlet></router-outlet>
+</div>

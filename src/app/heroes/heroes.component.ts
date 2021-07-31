@@ -1,13 +1,6 @@
 import { HEROES } from './../mock-heroes';
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { HeroesService } from '../heroes.service';
 import { MessagesService } from '../messages.service';
 @Component({

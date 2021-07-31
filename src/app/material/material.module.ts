@@ -5,6 +5,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -15,7 +18,18 @@ import { MatButtonModule } from '@angular/material/button';
     MatBadgeModule,
     MatListModule,
     MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatGridListModule,
   ],
-  exports: [MatToolbarModule, MatBadgeModule, MatListModule, MatButtonModule],
+  exports: [
+    MatToolbarModule,
+    MatBadgeModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatGridListModule,
+  ],
 })
 export class MaterialModule {}

@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../hero';
 import { HeroesService } from '../heroes.service';
 import { Location } from '@angular/common';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'hrs-hero-details',

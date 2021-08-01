@@ -1,7 +1,11 @@
 <div class="container">
-  <div class="title"><h1>Heroes</h1></div>
-
   <cdk-accordion class="accordion">
+    <div class="title accordion-item accordion-item-header">
+      <h1>Heroes</h1>
+      <button mat-icon-button (click)="openDialog()">
+        <mat-icon>add_circle_outline</mat-icon>
+      </button>
+    </div>
     <cdk-accordion-item
       #accordionItem="cdkAccordionItem"
       class="accordion-item"
@@ -24,7 +28,11 @@
         [attr.id]="'accordion-body-' + index"
         *ngIf="selectedHero"
       >
-        <hrs-hero-details [hero]="selectedHero"></hrs-hero-details>
+        <h2>{{ hero.name | uppercase }}</h2>
+        <div><span>id: </span>{{ hero.id }}</div>
+        <a routerLink="/detail/{{ hero.id }}">
+          <span class="detail-navigation">Go to details</span></a
+        >
       </div>
     </cdk-accordion-item>
   </cdk-accordion>

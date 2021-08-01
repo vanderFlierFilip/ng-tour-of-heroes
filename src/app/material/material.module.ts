@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatTooltipModule,
     MatGridListModule,
+    MatInputModule,
+    MatDialogModule,
   ],
   exports: [
     MatToolbarModule,
@@ -30,6 +34,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatTooltipModule,
     MatGridListModule,
+    MatInputModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}

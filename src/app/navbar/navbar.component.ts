@@ -8,11 +8,15 @@ import { MessagesService } from '../messages.service';
 })
 export class NavbarComponent implements OnInit {
   @Input('appTitle') title?: string;
+  msgLength?: number;
+  msgToolTip: string = '';
   constructor(private messagesService: MessagesService) {}
 
   ngOnInit(): void {}
 
   getLength() {
-    return this.messagesService.messages.length;
+    const length = this.messagesService.messages.length;
+    this.msgToolTip = `You have ${length} messages`;
+    return length;
   }
 }

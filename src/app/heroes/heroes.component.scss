@@ -12,6 +12,12 @@
     grid-row-start: 1;
     grid-row-end: 1;
     margin-top: 10px;
+    color: whitesmoke;
+    background-color: #673ab7;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 .accordion {
@@ -50,5 +56,17 @@
 .selected {
   transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
   color: white;
-  background-color: #ffc107;
+  background-color: rgb(255, 193, 7);
+}
+a {
+  text-decoration: none;
+  .detail-navigation {
+    margin-top: 4px;
+    font-size: 0.85em;
+    color: #999;
+    &:hover {
+      cursor: pointer;
+      color: rgb(207, 206, 206);
+    }
+  }
 }

@@ -3,7 +3,8 @@
 </div>
 <div class="container">
   <a
-    mat-button
+    mat-raised-button
+    matRippleColor="red"
     *ngFor="let hero of topHeroes"
     routerLink="/detail/{{ hero.id }}"
   >

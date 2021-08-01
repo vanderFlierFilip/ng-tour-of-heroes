@@ -28,17 +28,21 @@
         [attr.id]="'accordion-body-' + index"
         *ngIf="selectedHero"
       >
-<<<<<<< HEAD
         <h2>{{ hero.name | uppercase }}</h2>
+
         <div><span>id: </span>{{ hero.id }}</div>
         <a routerLink="/detail/{{ hero.id }}">
           <span class="detail-navigation">Go to details</span></a
         >
-=======
-        <ng-template #heroDetailsContent> </ng-template>
-
-        <!-- <hrs-hero-details [hero]="selectedHero"></hrs-hero-details> -->
->>>>>>> 51b9fec3a43d659ff48e03e573d09f41936ebaa5
+        <button
+          (click)="delete(hero)"
+          class="delete-action"
+          mat-raised-button
+          color="warn"
+          class="btn"
+        >
+          Delete
+        </button>
       </div>
     </cdk-accordion-item>
   </cdk-accordion>

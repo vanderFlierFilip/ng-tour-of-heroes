@@ -39,22 +39,31 @@ export class HeroesComponent implements OnInit {
       this.heroes = heroes;
     });
   }
+  addHero(name: string) {
+    if (!name) return;
+    this.heroesService.addHero({ name } as Hero).subscribe((hero) => {
+      this.heroes.unshift(hero);
+    });
+  }
 
+  delete(hero: Hero) {
+    this.heroes = this.heroes.filter((h) => h !== hero);
+
+    this.heroesService.deleteHero(hero.id).subscribe();
+  }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 
     const dialogRef = this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 
+    //
     dialogRef.afterClosed().subscribe((name: string) => {
-      if (!name) return;
-      this.heroesService.addHero({ name } as Hero).subscribe((hero) => {
-        this.heroes.push(hero);
-      });
+      this.addHero(name);
     });
   }
 }

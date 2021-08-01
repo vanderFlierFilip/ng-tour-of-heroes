@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +57,32 @@ export class HeroesService {
         this.log(message);
       }),
       catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  deleteHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+      tap((_) => {
+        const message = `Heroes Service: removed hero with id ${id}`;
+        this.log(message);
+      }),
+      catchError(this.handleError<Hero>('removeHero'))
+    );
+  }
+
+  searchHero(term: string): Observable<Hero[]> {
+    if (!term.trim) {
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap((x) =>
+        x.length
+          ? this.log(`Found heroes ${term}`)
+          : this.log(`no heroes matching ${term}`)
+      ),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
 

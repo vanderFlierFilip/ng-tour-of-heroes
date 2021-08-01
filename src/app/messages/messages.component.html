@@ -1,10 +1,12 @@
-<button mat-raised-button color="warn" (click)="messagesService.clear()">
-  Clear messages
-</button>
-<div style="margin-top: 25px">
-  <h2>Messages:</h2>
+<div style="margin-top: 10px">
+  <button mat-raised-button color="warn" (click)="messagesService.clear()">
+    Clear messages
+  </button>
+  <div style="margin-top: 25px">
+    <h2>Messages:</h2>
 
-  <div *ngIf="messagesService.messages.length">
-    <div *ngFor="let message of messagesService.messages">{{ message }}</div>
+    <div *ngIf="messagesService.messages.length">
+      <div *ngFor="let message of messagesService.messages">{{ message }}</div>
+    </div>
   </div>
 </div>

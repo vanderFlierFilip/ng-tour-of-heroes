@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroesMenuComponent } from './heroes-menu/heroes-menu.component';
 import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
+import { SearchHeroComponent } from './search-hero/search-hero.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dial
     DashboardComponent,
     HeroesMenuComponent,
     CreateHeroDialogComponent,
+    SearchHeroComponent,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,

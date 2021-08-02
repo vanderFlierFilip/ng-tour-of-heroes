@@ -5,7 +5,7 @@
 
   <cdk-accordion *ngIf="!isLoading" class="accordion">
     <div class="title accordion-item accordion-item-header">
-      <button mat-icon-button (click)="openDialog()">
+      <button matTooltip="Add new hero" mat-icon-button (click)="openDialog()">
         <mat-icon>add_circle_outline</mat-icon>
       </button>
     </div>
@@ -16,6 +16,7 @@
       (click)="onSelectHero(hero)"
       tabindex="0"
       [attr.id]="'accordion-header-' + index"
+      @fade
     >
       <div
         class="accordion-item-header"

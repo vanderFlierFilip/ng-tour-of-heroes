@@ -4,10 +4,31 @@ import { HeroesService } from '../heroes.service';
 import { MessagesService } from '../messages.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateHeroDialogComponent } from '../create-hero-dialog/create-hero-dialog.component';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'hrs-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
+  animations: [
+    trigger('fade', [
+      state('*', style({ transform: 'translateY()' })),
+
+      state(
+        'void',
+        style({
+          transform: 'translateX(-100%)',
+          opacity: 0,
+        })
+      ),
+      transition('* <=> void', [animate('0.3s')]),
+    ]),
+  ],
 })
 export class HeroesComponent implements OnInit {
   heroes!: Hero[];
@@ -39,7 +60,8 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero) {
-    this.heroesService.deleteHero(hero.id);
+    this.heroes = this.heroes.filter((h) => h.id !== hero.id);
+    this.heroesService.deleteHero(hero.id).subscribe();
   }
 
   onSelectHero(hero: Hero) {
@@ -59,7 +81,6 @@ export class HeroesComponent implements OnInit {
 
     const dialogRef = this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 
-    //
     dialogRef.afterClosed().subscribe((name: string) => {
       this.addHero(name);
     });

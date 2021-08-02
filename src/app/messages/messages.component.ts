@@ -13,20 +13,9 @@ import {
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
   animations: [
-    trigger('deleteMsg', [
-      state(
-        'clicked',
-        style({
-          color: 'black',
-        })
-      ),
-      state(
-        'remove',
-        style({
-          color: 'white',
-        })
-      ),
-      transition('clicked => remove', [animate('2s')]),
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', animate('0.5s')),
     ]),
   ],
 })
@@ -38,6 +27,7 @@ export class MessagesComponent implements OnInit {
 
   deleteMessages() {
     this.messagesService.clear();
+
     this.isDelete = !!this.isDelete;
   }
 }

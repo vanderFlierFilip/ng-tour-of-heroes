@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="details-body">
+  <hrs-spinner [condition]="isLoading"></hrs-spinner>
+  <div *ngIf="!isLoading" class="details-body">
     <div *ngIf="hero">
       <h2>{{ hero.name | uppercase }} Details</h2>
       <div>

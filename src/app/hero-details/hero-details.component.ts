@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 })
 export class HeroDetailsComponent implements OnInit {
   @Input() hero?: Hero;
+  isLoading = true;
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroesService,
@@ -25,6 +26,7 @@ export class HeroDetailsComponent implements OnInit {
       .getHero(+this.route.snapshot.paramMap.get('id')!)
       .subscribe((hero) => {
         this.hero = hero;
+        this.isLoading = !this.isLoading;
       });
   }
 

@@ -11,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     MatDialogModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -39,6 +41,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     MatDialogModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

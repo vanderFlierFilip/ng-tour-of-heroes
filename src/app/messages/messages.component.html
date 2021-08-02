@@ -1,12 +1,14 @@
 <div style="margin-top: 10px">
-  <button mat-raised-button color="warn" (click)="messagesService.clear()">
+  <button mat-raised-button color="warn" (click)="deleteMessages()">
     Clear messages
   </button>
   <div style="margin-top: 25px">
     <h2>Messages:</h2>
 
     <div *ngIf="messagesService.messages.length">
-      <div *ngFor="let message of messagesService.messages">{{ message }}</div>
+      <div *ngFor="let message of messagesService.messages" @deleteMsg>
+        {{ message }}
+      </div>
     </div>
   </div>
 </div>

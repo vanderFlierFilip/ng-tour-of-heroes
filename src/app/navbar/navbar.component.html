@@ -11,10 +11,10 @@
 
     <span class="spacer"></span>
     <mat-icon
-      [matBadge]="getLength()"
+      [matBadge]="getMessagesLength()"
       matBadgeColor="warn"
       #tooltip="matTooltip"
-      [matTooltip]="msgToolTip"
+      [matTooltip]="displayMsgNumber()"
       routerLink="/dashboard"
       style="cursor: pointer"
       >messages</mat-icon

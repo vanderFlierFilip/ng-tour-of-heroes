@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, retry, tap } from 'rxjs/operators';
+import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,8 @@ export class HeroesService {
         const message = 'Heroes Service: fetched heroes';
         this.log(message);
       }),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
+      catchError(this.handleError<Hero[]>('getHeroes', [])),
+      shareReplay()
     );
   }
 

@@ -1,4 +1,7 @@
-<div class="title">
+<div *ngIf="isLoading" class="container title spinner">
+  <hrs-spinner [condition]="isLoading"></hrs-spinner>
+</div>
+<div *ngIf="!isLoading" class="title">
   <h1>Top Heroes</h1>
 </div>
 <div class="container">

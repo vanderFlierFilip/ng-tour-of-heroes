@@ -1,7 +1,10 @@
-<div class="container">
-  <cdk-accordion class="accordion">
+<div class="grid-container">
+  <div class="accordion spinner">
+    <hrs-spinner [condition]="isLoading"></hrs-spinner>
+  </div>
+
+  <cdk-accordion *ngIf="!isLoading" class="accordion">
     <div class="title accordion-item accordion-item-header">
-      <h1>Heroes</h1>
       <button mat-icon-button (click)="openDialog()">
         <mat-icon>add_circle_outline</mat-icon>
       </button>

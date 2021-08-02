@@ -1,6 +1,4 @@
-import { HeroDetailsContentDirective } from './../hero-details/hero-details-content.directive';
-import { HEROES } from './../mock-heroes';
-import { Component, ContentChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroesService } from '../heroes.service';
 import { MessagesService } from '../messages.service';
@@ -12,19 +10,36 @@ import { CreateHeroDialogComponent } from '../create-hero-dialog/create-hero-dia
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {
-  selectedHero?: Hero;
-  heroes: Hero[] = [];
+  heroes!: Hero[];
   isSelected = false;
-  @ContentChild(HeroDetailsContentDirective)
-  content!: HeroDetailsContentDirective;
+  selectedHero?: Hero;
+  isLoading = true;
+
   constructor(
     private heroesService: HeroesService,
-    private messagesService: MessagesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private messagesService: MessagesService
   ) {}
 
   ngOnInit(): void {
     this.getHeroes();
+  }
+  getHeroes(): void {
+    this.heroesService.getHeroes().subscribe((heroes) => {
+      this.isLoading = !this.isLoading;
+      this.heroes = heroes;
+    });
+  }
+
+  addHero(name: string): void {
+    if (!name) return;
+    this.heroesService.addHero({ name } as Hero).subscribe((hero) => {
+      this.heroes.unshift(hero);
+    });
+  }
+
+  delete(hero: Hero) {
+    this.heroesService.deleteHero(hero.id);
   }
 
   onSelectHero(hero: Hero) {
@@ -34,30 +49,13 @@ export class HeroesComponent implements OnInit {
     );
   }
 
-  getHeroes() {
-    this.heroesService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes;
-    });
-  }
-  addHero(name: string) {
-    if (!name) return;
-    this.heroesService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes.unshift(hero);
-    });
-  }
-
-  delete(hero: Hero) {
-    this.heroes = this.heroes.filter((h) => h !== hero);
-
-    this.heroesService.deleteHero(hero.id).subscribe();
-  }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(CreateHeroDialogComponent, dialogConfig);
+    // this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 
     const dialogRef = this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 

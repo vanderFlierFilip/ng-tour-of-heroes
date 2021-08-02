@@ -19,6 +19,7 @@ import { HeroesMenuComponent } from './heroes-menu/heroes-menu.component';
 import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
 import { SearchHeroComponent } from './search-hero/search-hero.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     CreateHeroDialogComponent,
     SearchHeroComponent,
     SideNavComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

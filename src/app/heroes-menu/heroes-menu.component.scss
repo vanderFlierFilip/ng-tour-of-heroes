@@ -6,14 +6,14 @@
 }
 
 a {
-  border: solid 1px #ccc;
+  border: solid 1px var(--greyish);
   border-radius: 2px;
   padding: 2rem;
   font-size: 1.2rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  color: black;
+  color: var(--text-color);
   text-align: center;
   width: 25%;
   min-width: 100px;
@@ -22,7 +22,9 @@ a {
   margin: 20px;
   margin-top: 30px;
 }
-
+.spacer {
+  flex: 1 1 auto;
+}
 .title {
   display: flex;
   justify-content: center;

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
 import { MessagesService } from '../messages.service';
 
@@ -8,7 +9,7 @@ import { MessagesService } from '../messages.service';
 })
 export class NavbarComponent implements OnInit {
   @Input('appTitle') title?: string;
-
+  @Input() condition: any;
   constructor(private messagesService: MessagesService) {}
 
   ngOnInit(): void {}
@@ -34,4 +35,6 @@ export class NavbarComponent implements OnInit {
       msgNumber === 1 ? `${msgNumber} message` : `${msgNumber} messages`
     }`;
   }
+
+  onSideNavToggle(): void {}
 }

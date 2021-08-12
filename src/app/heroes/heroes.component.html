@@ -10,13 +10,13 @@
       </button>
     </div>
     <cdk-accordion-item
+      @fade
       #accordionItem="cdkAccordionItem"
       class="accordion-item"
       *ngFor="let hero of heroes; let index = index"
       (click)="onSelectHero(hero)"
       tabindex="0"
       [attr.id]="'accordion-header-' + index"
-      @fade
     >
       <div
         class="accordion-item-header"
@@ -38,9 +38,10 @@
         <a routerLink="/detail/{{ hero.id }}">
           <span class="detail-navigation">Go to details</span></a
         >
+
         <button
           (click)="delete(hero)"
-          class="delete-action"
+          class="delete-action spacer"
           mat-raised-button
           color="warn"
           class="btn"

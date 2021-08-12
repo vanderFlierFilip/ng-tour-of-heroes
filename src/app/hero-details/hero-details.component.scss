@@ -1,19 +1,20 @@
+@import "variables";
+
 .container {
   display: grid;
   height: 25vh;
-
   place-items: center;
 }
 
 .details-body {
-  border: solid 1px #ccc;
+  border: solid 1px $greyish;
   border-radius: 2px;
   padding: 2rem;
   font-size: 1.2rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  color: black;
+  color: $text-color;
   text-align: center;
   box-sizing: border-box;
   flex: 1 45%;

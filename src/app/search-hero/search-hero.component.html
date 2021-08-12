@@ -1,16 +1,15 @@
-<mat-form-field appearance="fill">
+<mat-form-field>
   <mat-label>Find a hero </mat-label>
   <textarea
     #searchBox
     (input)="search(searchBox.value)"
     matInput
-    [mat-autosize]="false"
+    [mat-autosize]="true"
     placeholder="Type hero name"
-    class="hero-input"
   ></textarea>
 </mat-form-field>
 
-<mat-selection-list [multiple]="false">
+<mat-selection-list class="list" [multiple]="false">
   <mat-list-option
     *ngFor="let hero of heroes$ | async"
     routerLink="/detail/{{ hero.id }}"

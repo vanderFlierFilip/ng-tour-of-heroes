@@ -1,3 +1,6 @@
+import { AppState } from './../state/app.state';
+import { Observable } from 'rxjs';
+import { selectHeroes } from './../state/heroes.selectors';
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroesService } from '../heroes.service';
@@ -11,6 +14,9 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { Store, select, StoreModule } from '@ngrx/store';
+import { retrieveHeroesList } from '../state/heroes.actions';
+
 @Component({
   selector: 'hrs-heroes',
   templateUrl: './heroes.component.html',
@@ -31,6 +37,7 @@ import {
   ],
 })
 export class HeroesComponent implements OnInit {
+  heroes$ = this.store.pipe(select(selectHeroes));
   heroes!: Hero[];
   isSelected = false;
   selectedHero?: Hero;
@@ -39,16 +46,21 @@ export class HeroesComponent implements OnInit {
   constructor(
     private heroesService: HeroesService,
     private dialog: MatDialog,
-    private messagesService: MessagesService
+    private messagesService: MessagesService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.getHeroes();
   }
   getHeroes(): void {
+    // this.heroesService.getHeroes().subscribe((Hero) => {
+    //   this.store.dispatch(retrieveHeroesList({ Hero }));
+    //   this.isLoading = !this.isLoading;
+    // });
     this.heroesService.getHeroes().subscribe((heroes) => {
-      this.isLoading = !this.isLoading;
       this.heroes = heroes;
+      this.isLoading = !this.isLoading;
     });
   }
 
@@ -76,8 +88,6 @@ export class HeroesComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
-    // this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 
     const dialogRef = this.dialog.open(CreateHeroDialogComponent, dialogConfig);
 

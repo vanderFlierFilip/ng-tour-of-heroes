@@ -5,13 +5,23 @@
   </mat-toolbar-row>
 
   <mat-toolbar-row>
-    <button mat-button [routerLink]="['/heroes']" routerLinkActive="active">
-      Heroes
-    </button>
+    <hrs-search-hero></hrs-search-hero>
 
-    <button mat-button [routerLink]="['/dashboard']" routerLinkActive="active">
-      Dashboard
-    </button>
+    <div *ngIf="!condition">
+      <button mat-button [routerLink]="['/heroes']" routerLinkActive="active">
+        Heroes
+      </button>
+
+      <button
+        mat-button
+        [routerLink]="['/dashboard']"
+        routerLinkActive="active"
+      >
+        Dashboard
+      </button>
+    </div>
+
+    <ng-content></ng-content>
 
     <span class="spacer"></span>
     <mat-icon

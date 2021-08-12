@@ -1,11 +1,12 @@
+@import "variables";
 .title {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 1;
   margin-top: 10px;
-  color: whitesmoke;
-  background-color: #673ab7;
+  color: $white-text-color;
+  background-color: $mat-purple;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   border-bottom-left-radius: 0;
@@ -26,7 +27,7 @@
   }
   &-item {
     display: block;
-    border: solid 1px #ccc;
+    border: solid 1px $greyish;
     &:last-child {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
@@ -49,21 +50,21 @@
   margin: 45%;
 }
 .delete-action {
-  margin-left: 75%;
+  flex: 1 1 auto;
 }
 .selected {
   transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-  background-color: #e4d7fa;
+  background-color: $selected-grey;
 }
 a {
   text-decoration: none;
   .detail-navigation {
     margin-top: 4px;
     font-size: 0.85em;
-    color: #999;
+    color: $greyer;
     &:hover {
       cursor: pointer;
-      color: rgb(207, 206, 206);
+      color: $greyish;
     }
   }
 }

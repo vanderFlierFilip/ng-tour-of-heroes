@@ -1,11 +1,11 @@
 .first-row {
   box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%);
-  .logo {
-    margin-left: -40px;
-    width: 200px;
-    height: 64px;
-    object-fit: cover;
-  }
+}
+.logo {
+  margin-left: -40px;
+  width: 200px;
+  height: 64px;
+  object-fit: cover;
 }
 .spacer {
   flex: 1 1 auto;

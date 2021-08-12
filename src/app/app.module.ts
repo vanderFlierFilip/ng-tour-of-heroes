@@ -1,3 +1,4 @@
+import { heroesReducer } from './state/heroes.reducer';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,14 @@ import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dial
 import { SearchHeroComponent } from './search-hero/search-hero.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { StoreModule } from '@ngrx/store';
+import { MainNavigationComponent } from './main-navigation/main-navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -34,6 +43,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SearchHeroComponent,
     SideNavComponent,
     SpinnerComponent,
+    MainNavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +56,13 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+    StoreModule.forRoot({ heroes: heroesReducer }, {}),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

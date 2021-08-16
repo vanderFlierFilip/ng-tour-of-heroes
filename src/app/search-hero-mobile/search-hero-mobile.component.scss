@@ -1,0 +1,32 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  background-color: #fff;
+  margin: 0;
+  .form-field {
+    width: 100%;
+  }
+}
+
+.search-result {
+  margin-top: 0;
+  color: black;
+  box-shadow: none;
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.8em;
+  }
+
+  p {
+    padding: 14px;
+  }
+}

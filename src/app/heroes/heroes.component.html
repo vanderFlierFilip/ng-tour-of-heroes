@@ -1,10 +1,10 @@
-<div class="grid-container">
+<div class="grid-col-3x1">
   <div class="accordion spinner">
     <hrs-spinner [condition]="isLoading"></hrs-spinner>
   </div>
 
   <cdk-accordion *ngIf="!isLoading" class="accordion">
-    <div class="title accordion-item accordion-item-header">
+    <div class="title">
       <button matTooltip="Add new hero" mat-icon-button (click)="openDialog()">
         <mat-icon>add_circle_outline</mat-icon>
       </button>
@@ -32,22 +32,26 @@
         [attr.id]="'accordion-body-' + index"
         *ngIf="selectedHero"
       >
-        <h2>{{ hero.name | uppercase }}</h2>
+        <div>
+          <h2>{{ hero.name | uppercase }}</h2>
 
-        <div><span>id: </span>{{ hero.id }}</div>
-        <a routerLink="/detail/{{ hero.id }}">
-          <span class="detail-navigation">Go to details</span></a
-        >
+          <div><span>id: </span>{{ hero.id }}</div>
+          <a routerLink="/detail/{{ hero.id }}">
+            <span class="detail-navigation">Go to details</span></a
+          >
+        </div>
 
-        <button
-          (click)="delete(hero)"
-          class="delete-action spacer"
-          mat-raised-button
-          color="warn"
-          class="btn"
-        >
-          Delete
-        </button>
+        <span class="delete-action"></span>
+        <div>
+          <button
+            (click)="delete(hero)"
+            mat-raised-button
+            color="warn"
+            class="btn"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </cdk-accordion-item>
   </cdk-accordion>

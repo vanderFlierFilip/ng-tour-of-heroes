@@ -5,15 +5,14 @@ import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroesService {
-  private heroesUrl = 'api/heroes';
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content Type': 'application/json' }),
-  };
+  private heroesUrl = environment.apiUrl + 'api/heroes';
+
   constructor(
     private http: HttpClient,
     private messagesService: MessagesService
@@ -25,8 +24,7 @@ export class HeroesService {
         const message = 'Heroes Service: fetched heroes';
         this.log(message);
       }),
-      catchError(this.handleError<Hero[]>('getHeroes', [])),
-      shareReplay()
+      catchError(this.handleError<Hero[]>('getHeroes', []))
     );
   }
 
@@ -42,7 +40,8 @@ export class HeroesService {
   }
 
   updateHero(hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http.put(url, hero).pipe(
       tap((_) => {
         const message = `Heroes Service: updated hero with id: ${hero.id}`;
         this.log(message);
@@ -52,7 +51,7 @@ export class HeroesService {
   }
 
   addHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
+    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
       tap((newHero: Hero) => {
         const message = `Heroes Service: added a new hero ${hero.name} with id ${hero.id}`;
         this.log(message);
@@ -64,7 +63,7 @@ export class HeroesService {
   deleteHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
 
-    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+    return this.http.delete<Hero>(url).pipe(
       tap((_) => {
         const message = `Heroes Service: removed hero with id ${id}`;
         this.log(message);
@@ -77,7 +76,7 @@ export class HeroesService {
     if (!term.trim) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}/search?name=${term}`).pipe(
       tap((x) =>
         x.length
           ? this.log(`Found heroes ${term}`)

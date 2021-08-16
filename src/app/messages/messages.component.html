@@ -1,8 +1,8 @@
-<div style="margin-top: 10px">
+<div style="margin-top: 10px" class="backdrop">
   <button mat-raised-button color="warn" (click)="deleteMessages()">
     Clear messages
   </button>
-  <div style="margin-top: 25px">
+  <div style="margin-top: 25px" class="messages">
     <h2>Messages:</h2>
 
     <div *ngIf="messagesService.messages.length" @fade>

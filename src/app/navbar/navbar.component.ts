@@ -1,5 +1,13 @@
+import { MsgModalDirective } from './../msg-modal.directive';
+import { MessagesComponent } from './../messages/messages.component';
 import { Observable } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ComponentFactoryResolver,
+  ViewChild,
+} from '@angular/core';
 import { MessagesService } from '../messages.service';
 
 @Component({
@@ -9,8 +17,14 @@ import { MessagesService } from '../messages.service';
 })
 export class NavbarComponent implements OnInit {
   @Input('appTitle') title?: string;
+  @ViewChild(MsgModalDirective, { static: true, read: MsgModalDirective })
+  msgModalHost!: MsgModalDirective;
+
   @Input() condition: any;
-  constructor(private messagesService: MessagesService) {}
+  constructor(
+    private messagesService: MessagesService,
+    private cmpFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,6 +49,13 @@ export class NavbarComponent implements OnInit {
       msgNumber === 1 ? `${msgNumber} message` : `${msgNumber} messages`
     }`;
   }
+  loadComponent() {
+    const cmpFactory =
+      this.cmpFactoryResolver.resolveComponentFactory(MessagesComponent);
 
-  onSideNavToggle(): void {}
+    const viewContainerRef = this.msgModalHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    viewContainerRef.createComponent(cmpFactory);
+  }
 }

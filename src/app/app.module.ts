@@ -7,8 +7,6 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -21,14 +19,11 @@ import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dial
 import { SearchHeroComponent } from './search-hero/search-hero.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { StoreModule } from '@ngrx/store';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { StoreModule } from '@ngrx/store';
+import { SearchHeroMobileComponent } from './search-hero-mobile/search-hero-mobile.component';
+import { SearchComponent } from './search/search.component';
+import { MsgModalDirective } from './msg-modal.directive';
 
 @NgModule({
   declarations: [
@@ -44,6 +39,9 @@ import { MatListModule } from '@angular/material/list';
     SideNavComponent,
     SpinnerComponent,
     MainNavigationComponent,
+    SearchHeroMobileComponent,
+    SearchComponent,
+    MsgModalDirective,
   ],
   imports: [
     BrowserModule,
@@ -53,16 +51,8 @@ import { MatListModule } from '@angular/material/list';
     CdkAccordionModule,
     MaterialModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
+
     StoreModule.forRoot({ heroes: heroesReducer }, {}),
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

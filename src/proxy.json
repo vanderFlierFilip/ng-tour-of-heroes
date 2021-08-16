@@ -1,0 +1,6 @@
+{
+  "api/*": {
+    "target": "https://ngheroesapi.azurewebsites.net/",
+    "secure": false
+  }
+}

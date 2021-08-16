@@ -1,3 +1,40 @@
-.hero-input {
-  height: 12px;
+@import "mixins";
+
+.wrapper {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  width: 100%;
+
+  .search-box {
+    background: #fff;
+    border-radius: 16px;
+
+    input {
+      height: 30px;
+      border: none;
+      outline: none;
+      padding: 0 60px 0 20px;
+    }
+  }
+}
+
+.search-result {
+  background-color: #fff;
+  color: black;
+  width: auto;
+  box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%);
+  @include set-bottom-radius(16px);
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.8em;
+  }
+
+  p {
+    padding: 14px;
+  }
 }

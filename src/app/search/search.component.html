@@ -1,0 +1,12 @@
+<hrs-search-hero
+  *ngIf="!viewportSize"
+  (searchEvent)="search($event)"
+  [heroes]="$any(heroes$ | async)"
+></hrs-search-hero>
+
+<hrs-search-hero-mobile
+  *ngIf="viewportSize"
+  (searchEvent)="search($event)"
+  [heroes]="$any(heroes$ | async)"
+>
+</hrs-search-hero-mobile>

@@ -1,24 +1,27 @@
+@import "variables";
 .container {
   display: flex;
   flex-wrap: wrap;
   height: 200px;
   margin: 10px;
+  position: relative;
+  width: 100%;
 }
 
 a {
-  border: solid 1px var(--greyish);
+  border: solid 1px $greyish;
   border-radius: 2px;
   padding: 2rem;
   font-size: 1.2rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  color: var(--text-color);
+  color: $text-color;
   text-align: center;
   width: 25%;
   min-width: 100px;
   box-sizing: border-box;
-  flex: 1 35%;
+  flex: 1 25%;
   margin: 20px;
   margin-top: 30px;
 }

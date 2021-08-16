@@ -20,8 +20,19 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <button
+        type="button"
+        mat-icon-button
+        (click)="toggleSearch()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
     </hrs-navbar>
     <ng-content></ng-content>
+    <div *ngIf="toggler">
+      <hrs-search [viewportSize]="isHandset$ | async"> </hrs-search>
+    </div>
 
     <!-- Add Content Here -->
   </mat-sidenav-content>

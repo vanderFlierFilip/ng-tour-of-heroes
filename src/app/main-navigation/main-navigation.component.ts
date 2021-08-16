@@ -6,16 +6,20 @@ import { map, shareReplay } from 'rxjs/operators';
 @Component({
   selector: 'hrs-main-navigation',
   templateUrl: './main-navigation.component.html',
-  styleUrls: ['./main-navigation.component.scss']
+  styleUrls: ['./main-navigation.component.scss'],
 })
 export class MainNavigationComponent {
-
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  toggler = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  toggleSearch() {
+    this.toggler = !this.toggler;
+  }
 }

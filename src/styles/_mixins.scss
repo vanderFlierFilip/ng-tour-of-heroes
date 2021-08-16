@@ -1,0 +1,23 @@
+@mixin set-top-radius($amount) {
+  border-top-left-radius: $amount;
+  border-top-right-radius: $amount;
+}
+@mixin set-bottom-radius($amount) {
+  border-bottom-left-radius: $amount;
+  border-bottom-right-radius: $amount;
+}
+
+@mixin d-flex($align: center, $justify: flex-start) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin set-grid-row-placement($start, $end) {
+  grid-row-start: $start;
+  grid-row-end: $end;
+}
+@mixin set-grid-column-placement($start, $end) {
+  grid-column-start: $start;
+  grid-column-end: $end;
+}

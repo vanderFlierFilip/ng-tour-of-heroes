@@ -1,11 +1,16 @@
 <mat-toolbar color="primary">
+  <ng-container msgModal></ng-container>
+
   <mat-toolbar-row class="first-row">
     <img src="../assets/angular_whiteTransparent.png" class="logo" />
     <h1>{{ title }}</h1>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
-    <hrs-search-hero></hrs-search-hero>
+    <div style="margin-top: auto" *ngIf="!condition">
+      <hrs-search></hrs-search>
+    </div>
+    <span *ngIf="!condition" class="spacer-md"></span>
 
     <div *ngIf="!condition">
       <button mat-button [routerLink]="['/heroes']" routerLinkActive="active">
@@ -24,13 +29,14 @@
     <ng-content></ng-content>
 
     <span class="spacer"></span>
+
     <mat-icon
       [matBadge]="getMessagesLength()"
       matBadgeColor="warn"
       #tooltip="matTooltip"
       [matTooltip]="displayMsgNumber()"
-      routerLink="/dashboard"
       style="cursor: pointer"
+      (click)="loadComponent()"
       >messages</mat-icon
     >
   </mat-toolbar-row>

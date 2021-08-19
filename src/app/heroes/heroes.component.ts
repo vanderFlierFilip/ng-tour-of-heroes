@@ -2,11 +2,11 @@ import { AppState } from './../state/app.state';
 import { Observable } from 'rxjs';
 import { selectHeroes } from './../state/heroes.selectors';
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroesService } from '../heroes.service';
+import { Hero } from '../shared/models/hero';
+import { HeroesService } from './services/heroes.service';
 import { MessagesService } from '../messages.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateHeroDialogComponent } from '../create-hero-dialog/create-hero-dialog.component';
+import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
 import {
   trigger,
   state,
@@ -23,8 +23,6 @@ import { retrieveHeroesList } from '../state/heroes.actions';
   styleUrls: ['./heroes.component.scss'],
   animations: [
     trigger('fade', [
-      state('*', style({ transform: 'translateY()' })),
-
       state(
         'void',
         style({

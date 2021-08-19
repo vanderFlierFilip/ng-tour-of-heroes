@@ -1,5 +1,5 @@
 import { MessagesService } from './../messages.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   trigger,
   state,
@@ -21,13 +21,18 @@ import {
 })
 export class MessagesComponent implements OnInit {
   isDelete = false;
+  @Output() closeEvent = new EventEmitter();
   constructor(public messagesService: MessagesService) {}
 
   ngOnInit(): void {}
 
-  deleteMessages() {
+  deleteMessages(): void {
     this.messagesService.clear();
 
     this.isDelete = !!this.isDelete;
+  }
+
+  close(): void {
+    this.closeEvent.emit();
   }
 }

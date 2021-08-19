@@ -1,0 +1,29 @@
+import { MsgModalDirective } from './directives/msg-modal.directive';
+import { RouterModule } from '@angular/router';
+import { SearchModule } from './../search/search.module';
+import { MaterialModule } from './../material/material.module';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    MainNavigationComponent,
+    NavbarComponent,
+    SideNavComponent,
+    MsgModalDirective,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MaterialModule,
+    SearchModule,
+    RouterModule,
+  ],
+  exports: [MainNavigationComponent],
+})
+export class CoreModule {}

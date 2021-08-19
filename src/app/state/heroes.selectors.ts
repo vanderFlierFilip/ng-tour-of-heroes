@@ -1,4 +1,4 @@
-import { Hero } from './../hero';
+import { Hero } from '../shared/models/hero';
 import { AppState } from './app.state';
 import { createSelector } from '@ngrx/store';
 

@@ -7,13 +7,26 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { Hero } from '../hero';
-import { HeroesService } from '../heroes.service';
+import { Hero } from '../shared/models/hero';
+import { HeroesService } from '../heroes/services/heroes.service';
 
 @Component({
   selector: 'hrs-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  template: `
+    <hrs-search-hero
+      *ngIf="!viewportSize"
+      (searchEvent)="search($event)"
+      [heroes]="$any(heroes$ | async)"
+    ></hrs-search-hero>
+
+    <hrs-search-hero-mobile
+      *ngIf="viewportSize"
+      (searchEvent)="search($event)"
+      [heroes]="$any(heroes$ | async)"
+    >
+    </hrs-search-hero-mobile>
+  `,
+  styles: [],
 })
 export class SearchComponent implements OnInit {
   @Input() viewportSize?: any;

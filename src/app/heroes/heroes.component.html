@@ -3,56 +3,42 @@
     <hrs-spinner [condition]="isLoading"></hrs-spinner>
   </div>
 
-  <cdk-accordion *ngIf="!isLoading" class="accordion">
+  <mat-accordion class="accordion" *ngIf="!isLoading">
     <div class="title">
       <button matTooltip="Add new hero" mat-icon-button (click)="openDialog()">
         <mat-icon>add_circle_outline</mat-icon>
       </button>
     </div>
-    <cdk-accordion-item
-      @fade
-      #accordionItem="cdkAccordionItem"
-      class="accordion-item"
-      *ngFor="let hero of heroes; let index = index"
-      (click)="onSelectHero(hero)"
-      tabindex="0"
-      [attr.id]="'accordion-header-' + index"
-    >
-      <div
-        class="accordion-item-header"
-        (click)="accordionItem.toggle()"
-        [class.selected]="selectedHero === hero"
-      >
-        <span>{{ hero.id }}</span>
-        {{ hero.name }}
-      </div>
-      <div
-        class="accordion-item-body"
-        [style.display]="accordionItem.expanded ? '' : 'none'"
-        [attr.id]="'accordion-body-' + index"
-        *ngIf="selectedHero"
-      >
-        <div>
-          <h2>{{ hero.name | uppercase }}</h2>
+    <mat-expansion-panel @fade hideToggle *ngFor="let hero of heroes">
+      <mat-expansion-panel-header (click)="onSelectHero(hero)">
+        <mat-panel-title>
+          <span>{{ hero.id }}</span>
+        </mat-panel-title>
+        <mat-panel-description> {{ hero.name }} </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <div class="accordion-item-body">
+          <div>
+            <h2>{{ hero.name | uppercase }}</h2>
 
-          <div><span>id: </span>{{ hero.id }}</div>
-          <a routerLink="/detail/{{ hero.id }}">
-            <span class="detail-navigation">Go to details</span></a
-          >
-        </div>
-
-        <span class="delete-action"></span>
-        <div>
-          <button
-            (click)="delete(hero)"
-            mat-raised-button
-            color="warn"
-            class="btn"
-          >
-            Delete
-          </button>
+            <div><span>id: </span>{{ hero.id }}</div>
+            <a routerLink="/detail/{{ hero.id }}">
+              <span class="detail-navigation">Go to details</span></a
+            >
+          </div>
+          <div class="spacer"></div>
+          <div>
+            <button
+              (click)="delete(hero)"
+              mat-raised-button
+              color="warn"
+              class="btn"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
-    </cdk-accordion-item>
-  </cdk-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero } from '../../shared/models/hero';
 
 @Component({
   selector: 'hrs-search-hero-mobile',

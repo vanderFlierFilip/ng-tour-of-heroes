@@ -1,4 +1,4 @@
-import { Hero } from './../hero';
+import { Hero } from '../shared/models/hero';
 import { createAction, props } from '@ngrx/store';
 
 export const addHero = createAction(

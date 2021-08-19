@@ -1,6 +1,6 @@
-import { HeroesService } from './../heroes.service';
+import { HeroesService } from '../heroes/services/heroes.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero } from '../shared/models/hero';
 import { SideNavService } from '../side-nav.service';
 import { MatSidenav } from '@angular/material/sidenav';
 

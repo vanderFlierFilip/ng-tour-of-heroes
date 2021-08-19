@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Hero } from '../hero';
-import { HeroesService } from '../heroes.service';
+import { Hero } from '../../shared/models/hero';
+import { HeroesService } from '../services/heroes.service';
 
 @Component({
   selector: 'hrs-heroes-menu',

@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div (click)="toggleList()" class="search-box">
+  <div class="search-box" (keydown)="toggleList()">
     <input
       #searchBox
       class="search-box"
@@ -8,7 +8,11 @@
       placeholder="Find a hero"
       autocomplete="off"
     />
-    <span class="icon" style="color: rgb(66, 66, 66); margin-top: 12px">
+    <span
+      (click)="toggleList()"
+      class="icon"
+      style="color: rgb(66, 66, 66); margin-top: 12px"
+    >
       <mat-icon>search</mat-icon>
     </span>
     <div class="search-result" *ngIf="!condition">

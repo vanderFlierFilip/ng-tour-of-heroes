@@ -1,8 +1,8 @@
-import { MessagesService } from './messages.service';
-import { HEROES } from './mock-heroes';
+import { MessagesService } from '../../messages.service';
+import { HEROES } from '../../mock-heroes';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Hero } from './hero';
+import { Hero } from '../../shared/models/hero';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';

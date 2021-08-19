@@ -1,6 +1,6 @@
-import { MsgModalDirective } from './../msg-modal.directive';
-import { MessagesComponent } from './../messages/messages.component';
-import { Observable } from 'rxjs';
+import { MsgModalDirective } from '../../directives/msg-modal.directive';
+import { MessagesComponent } from '../../../messages/messages.component';
+import { Observable, Subscription } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -8,7 +8,7 @@ import {
   ComponentFactoryResolver,
   ViewChild,
 } from '@angular/core';
-import { MessagesService } from '../messages.service';
+import { MessagesService } from '../../../messages.service';
 
 @Component({
   selector: 'hrs-navbar',
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   @Input('appTitle') title?: string;
   @ViewChild(MsgModalDirective, { static: true, read: MsgModalDirective })
   msgModalHost!: MsgModalDirective;
+  closeSub!: Subscription;
 
   @Input() condition: any;
   constructor(
@@ -49,13 +50,20 @@ export class NavbarComponent implements OnInit {
       msgNumber === 1 ? `${msgNumber} message` : `${msgNumber} messages`
     }`;
   }
+
   loadComponent() {
     const cmpFactory =
       this.cmpFactoryResolver.resolveComponentFactory(MessagesComponent);
 
     const viewContainerRef = this.msgModalHost.viewContainerRef;
+
     viewContainerRef.clear();
 
-    viewContainerRef.createComponent(cmpFactory);
+    const msgComponentRef = viewContainerRef.createComponent(cmpFactory);
+
+    this.closeSub = msgComponentRef.instance.closeEvent.subscribe(() => {
+      this.closeSub.unsubscribe();
+      viewContainerRef.clear();
+    });
   }
 }

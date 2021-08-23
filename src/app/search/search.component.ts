@@ -17,6 +17,7 @@ import { select, Store } from '@ngrx/store';
       *ngIf="!viewportSize"
       (searchEvent)="search($event)"
       [heroes]="heroes$ | async"
+      [condition]="showList$ | async"
     ></hrs-search-hero>
 
     <hrs-search-hero-mobile
@@ -30,25 +31,21 @@ import { select, Store } from '@ngrx/store';
 })
 export class SearchComponent implements OnInit {
   @Input() viewportSize?: any;
+  showList$ = this.store.select(fromSelector.showListValue);
 
   heroes$!: Observable<Hero[]>;
-
+  heroesLength$!: number;
   public searchTerms = new Subject<string>();
 
-  constructor(
-    private searchService: SearchService,
-    private router: Router,
-    private store: Store<fromSearch.searchState>
-  ) {}
+  constructor(private store: Store<fromSearch.SearchState>) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
     this.store.dispatch(searchHero({ query: term }));
     this.heroes$ = this.store.select(fromSelector.heroesResults);
-  }
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      this.searchTerms.next('');
+    this.store.select(fromSelector.heroesResults).subscribe((heroes) => {
+      this.heroesLength$ = heroes.length;
     });
   }
+  ngOnInit() {}
 }

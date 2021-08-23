@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 
 @Component({
   selector: 'hrs-hero-details-view',

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 
 export const searchHero = createAction(
   '[Search] Search',

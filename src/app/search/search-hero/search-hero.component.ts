@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 
 @Component({
   selector: 'hrs-search-hero',
@@ -8,9 +8,10 @@ import { Hero } from 'src/app/shared/models/hero';
   styleUrls: ['./search-hero.component.scss'],
 })
 export class SearchHeroComponent implements OnInit {
-  condition = true;
+  @Input() condition!: boolean | null;
 
   @Input() heroes!: Hero[] | null;
+  @Input() heroesLength!: number;
 
   @Output() searchEvent = new EventEmitter<string>();
   public searchTerms = new Subject<string>();
@@ -19,11 +20,7 @@ export class SearchHeroComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toggleList() {
-    this.condition = !this.condition;
-  }
-
   search(value: string) {
-    this.searchEvent.emit(value);
+    return this.searchEvent.emit(value);
   }
 }

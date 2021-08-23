@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { Hero } from '../../shared/models/hero';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -75,12 +74,15 @@ export class HeroesService {
     if (!term.trim) {
       return of([]);
     }
+
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap((x) =>
+      tap((x) => {
+        console.log(term);
         x.length
           ? this.log(`Found heroes ${term}`)
-          : this.log(`no heroes matching ${term}`)
-      ),
+          : this.log(`no heroes matching ${term}`);
+      }),
+
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }

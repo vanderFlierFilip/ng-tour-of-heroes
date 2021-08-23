@@ -1,18 +1,13 @@
 <div class="wrapper" *ngIf="showCondition">
   <div>
-    <mat-form-field
-      #searchInput
-      class="form-field"
-      appearance="fill"
-      matAutoSize="true"
-    >
+    <mat-form-field class="form-field" appearance="fill" matAutoSize="true">
       <mat-label>Search heroes</mat-label>
       <input
         #searchInput
         matInput
         type="text"
         autocomplete="off"
-        (input)="search($any($event))"
+        (input)="searchEvent.emit(searchInput.value)"
       />
       <button matPrefix mat-icon-button (click)="showSearch()">
         <mat-icon>arrow_back</mat-icon>

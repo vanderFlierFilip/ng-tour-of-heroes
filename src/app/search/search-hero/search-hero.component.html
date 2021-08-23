@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="search-box" (keydown)="toggleList()">
+  <div class="search-box">
     <input
       #searchBox
       class="search-box"
@@ -8,14 +8,10 @@
       placeholder="Find a hero"
       autocomplete="off"
     />
-    <span
-      (click)="toggleList()"
-      class="icon"
-      style="color: rgb(66, 66, 66); margin-top: 12px"
-    >
+    <span class="icon" style="color: rgb(66, 66, 66); margin-top: 12px">
       <mat-icon>search</mat-icon>
     </span>
-    <div class="search-result" *ngIf="!condition">
+    <div class="search-result" *ngIf="condition">
       <li *ngFor="let hero of heroes">
         <a routerLink="/detail/{{ hero.id }}">
           <p>

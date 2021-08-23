@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Hero } from '../../shared/models/hero';
 
 @Component({
@@ -12,7 +11,7 @@ export class SearchHeroMobileComponent implements OnInit {
 
   @Input() heroes!: Hero[] | null;
 
-  @Output() searchEvent = new EventEmitter<any>();
+  @Output() searchEvent = new EventEmitter<string>();
 
   constructor() {}
 
@@ -20,12 +19,5 @@ export class SearchHeroMobileComponent implements OnInit {
 
   showSearch(): void {
     this.showCondition = !this.showCondition;
-  }
-
-  search(event: InputEvent): void {
-    if (!event.data) {
-      return;
-    }
-    this.searchEvent.emit(event.data);
   }
 }

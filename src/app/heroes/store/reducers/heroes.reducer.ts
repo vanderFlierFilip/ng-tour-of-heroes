@@ -1,4 +1,4 @@
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 import * as heroActions from '../actions/heroes.actions';
 import * as heroApiActions from '../actions/heroes.api.actions';
 

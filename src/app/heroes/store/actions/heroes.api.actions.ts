@@ -1,6 +1,6 @@
 import { getHeroById } from './heroes.actions';
 import { createAction, props } from '@ngrx/store';
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 
 export const loadHeroesSuccess = createAction(
   '[Heroes / API], Load Heroes Success',

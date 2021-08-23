@@ -1,20 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
-import { Hero } from 'src/app/shared/models/hero';
+import { Hero } from '@ng-heroes/shared/models/hero';
 
 import * as searchActions from '../actions/search.actions';
 
 export const searchFeatureKey = 'search';
 
-export interface searchState {
+export interface SearchState {
   heroes: Hero[];
   query: string;
   error: string;
+  showList: boolean;
 }
 
-const initialState: searchState = {
+const initialState: SearchState = {
   heroes: [],
   query: '',
   error: '',
+  showList: false,
 };
 
 export const reducer = createReducer(
@@ -25,11 +27,13 @@ export const reducer = createReducer(
           heroes: [],
           error: '',
           query,
+          showList: false,
         }
       : {
           ...state,
           error: '',
           query,
+          showList: true,
         };
   }),
   on(searchActions.searchHeroSuccess, (state, { heroes }) => {
@@ -38,6 +42,7 @@ export const reducer = createReducer(
 
       error: '',
       query: state.query,
+      showList: true,
     };
   }),
   on(searchActions.searchHeroFailure, (state, { error }) => {
@@ -48,4 +53,5 @@ export const reducer = createReducer(
   })
 );
 
-export const selectSearchResults = (state: searchState) => state.heroes;
+export const selectSearchResults = (state: SearchState) => state.heroes;
+export const selectShowList = (state: SearchState) => state.showList;

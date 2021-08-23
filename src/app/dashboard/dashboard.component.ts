@@ -11,7 +11,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
-  constructor(private heroesService: HeroesService) {}
+  constructor() {}
 
   ngAfterViewInit(): void {}
 }

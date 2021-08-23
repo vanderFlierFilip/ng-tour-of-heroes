@@ -1,6 +1,7 @@
+import { SearchModule } from './../search/search.module';
+import { HeroesModule } from './../heroes/heroes.module';
 import { MsgModalDirective } from './directives/msg-modal.directive';
 import { RouterModule } from '@angular/router';
-import { SearchModule } from './../search/search.module';
 import { MaterialModule } from './../material/material.module';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,8 +22,9 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     MaterialModule,
-    SearchModule,
     RouterModule,
+    HeroesModule,
+    SearchModule,
   ],
   exports: [MainNavigationComponent],
 })

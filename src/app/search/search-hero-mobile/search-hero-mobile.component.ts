@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Hero } from '../../shared/models/hero';
 
 @Component({
@@ -9,7 +10,7 @@ import { Hero } from '../../shared/models/hero';
 export class SearchHeroMobileComponent implements OnInit {
   showCondition = true;
 
-  @Input() heroes!: Hero[];
+  @Input() heroes!: Hero[] | null;
 
   @Output() searchEvent = new EventEmitter<any>();
 

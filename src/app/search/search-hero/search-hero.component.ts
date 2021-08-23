@@ -1,5 +1,6 @@
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Hero } from 'src/app/shared/models/hero';
 
 @Component({
   selector: 'hrs-search-hero',
@@ -9,7 +10,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SearchHeroComponent implements OnInit {
   condition = true;
 
-  @Input() heroes?: any[];
+  @Input() heroes!: Hero[] | null;
 
   @Output() searchEvent = new EventEmitter<string>();
   public searchTerms = new Subject<string>();

@@ -1,14 +1,14 @@
+import * as fromSearch from './reducers/search.reducer';
+import * as fromSelector from './selectors/search.selectors';
+
+import { searchHero } from './actions/search.actions';
+import { SearchService } from './search.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
+
 import { Hero } from '../shared/models/hero';
-import { HeroesService } from '../heroes/services/heroes.service';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'hrs-search',
@@ -16,13 +16,13 @@ import { HeroesService } from '../heroes/services/heroes.service';
     <hrs-search-hero
       *ngIf="!viewportSize"
       (searchEvent)="search($event)"
-      [heroes]="$any(heroes$ | async)"
+      [heroes]="heroes$ | async"
     ></hrs-search-hero>
 
     <hrs-search-hero-mobile
       *ngIf="viewportSize"
       (searchEvent)="search($event)"
-      [heroes]="$any(heroes$ | async)"
+      [heroes]="heroes$ | async"
     >
     </hrs-search-hero-mobile>
   `,
@@ -35,21 +35,18 @@ export class SearchComponent implements OnInit {
 
   public searchTerms = new Subject<string>();
 
-  constructor(private heroesService: HeroesService, private router: Router) {}
+  constructor(
+    private searchService: SearchService,
+    private router: Router,
+    private store: Store<fromSearch.searchState>
+  ) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
+    this.store.dispatch(searchHero({ query: term }));
+    this.heroes$ = this.store.select(fromSelector.heroesResults);
   }
-  ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      debounceTime(300),
-
-      distinctUntilChanged(),
-      tap((term) => {
-        console.log(term);
-      }),
-      switchMap((term: string) => this.heroesService.searchHero(term))
-    );
+  ngOnInit() {
     this.router.events.subscribe((event) => {
       this.searchTerms.next('');
     });

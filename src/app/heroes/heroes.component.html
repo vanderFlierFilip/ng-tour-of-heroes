@@ -1,16 +1,16 @@
 <div class="grid-col-3x1">
   <div class="accordion spinner">
-    <hrs-spinner [condition]="isLoading"></hrs-spinner>
+    <hrs-spinner [condition]="isLoading$ | async"></hrs-spinner>
   </div>
 
-  <mat-accordion class="accordion" *ngIf="!isLoading">
+  <mat-accordion class="accordion" *ngIf="!(isLoading$ | async)">
     <div class="title">
       <button matTooltip="Add new hero" mat-icon-button (click)="openDialog()">
         <mat-icon>add_circle_outline</mat-icon>
       </button>
     </div>
-    <mat-expansion-panel @fade hideToggle *ngFor="let hero of heroes">
-      <mat-expansion-panel-header (click)="onSelectHero(hero)">
+    <mat-expansion-panel hideToggle *ngFor="let hero of heroes$ | async">
+      <mat-expansion-panel-header @slideIn (click)="onSelectHero(hero)">
         <mat-panel-title>
           <span>{{ hero.id }}</span>
         </mat-panel-title>

@@ -1,34 +1,9 @@
 <div class="container">
-  <hrs-spinner [condition]="isLoading"></hrs-spinner>
-  <div *ngIf="!isLoading" class="details-body">
-    <div *ngIf="hero">
-      <h2>{{ hero.name | uppercase }} Details</h2>
-      <div>
-        <h3><span>ID:</span> {{ hero.id }}</h3>
-      </div>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput type="text" [(ngModel)]="hero.name" />
-        <button
-          matSuffix
-          mat-icon-button
-          matTooltip="Save changes"
-          matTooltipPosition="above"
-          (click)="save()"
-        >
-          <mat-icon>save</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-
-    <button
-      mat-raised-button
-      matTooltip="Go back"
-      matTooltipPosition="left"
-      (click)="goBack()"
-    >
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-  </div>
+  <hrs-hero-details-view
+    [hero]="hero$ | async"
+    (save)="save($event)"
+    [isLoading]="isLoading$ | async"
+    (navigateBack)="goBack()"
+  >
+  </hrs-hero-details-view>
 </div>

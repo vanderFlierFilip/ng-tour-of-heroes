@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class HeroesService {
-  private heroesUrl = environment.apiUrl + 'api/heroes';
+  private heroesUrl = 'api/heroes';
 
   constructor(
     private http: HttpClient,
@@ -23,8 +23,7 @@ export class HeroesService {
       tap((_) => {
         const message = 'Heroes Service: fetched heroes';
         this.log(message);
-      }),
-      catchError(this.handleError<Hero[]>('getHeroes', []))
+      })
     );
   }
 
@@ -76,7 +75,7 @@ export class HeroesService {
     if (!term.trim) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/search?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap((x) =>
         x.length
           ? this.log(`Found heroes ${term}`)

@@ -1,15 +1,17 @@
-<div *ngIf="isLoading" class="container title spinner">
-  <hrs-spinner [condition]="isLoading"></hrs-spinner>
+<div *ngIf="isLoading$ | async" class="container title spinner">
+  <hrs-spinner [condition]="isLoading$ | async"></hrs-spinner>
 </div>
-<div *ngIf="!isLoading" class="title">
-  <h1>Top Heroes</h1>
-</div>
-<div class="container">
-  <a
-    mat-raised-button
-    *ngFor="let hero of topHeroes"
-    routerLink="/detail/{{ hero.id }}"
-  >
-    {{ hero.name }}
-  </a>
+<div *ngIf="!(isLoading$ | async)">
+  <div class="title">
+    <h1>Top Heroes</h1>
+  </div>
+  <div class="container">
+    <a
+      mat-raised-button
+      *ngFor="let hero of topHeroes$ | async"
+      routerLink="/detail/{{ hero.id }}"
+    >
+      {{ hero.name }}
+    </a>
+  </div>
 </div>

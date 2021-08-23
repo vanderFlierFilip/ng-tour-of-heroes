@@ -1,7 +1,6 @@
-import { AppState } from './../state/app.state';
+import * as fromStore from './store/reducers/heroes.reducer';
 import { Observable } from 'rxjs';
-import { selectHeroes } from './../state/heroes.selectors';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Hero } from '../shared/models/hero';
 import { HeroesService } from './services/heroes.service';
 import { MessagesService } from '../messages.service';
@@ -15,14 +14,19 @@ import {
   transition,
 } from '@angular/animations';
 import { Store, select, StoreModule } from '@ngrx/store';
-import { retrieveHeroesList } from '../state/heroes.actions';
+import {
+  loadHeroes,
+  addHero,
+  removeHero,
+} from './store/actions/heroes.actions';
+import * as fromSelector from './store/heroes.selectors';
 
 @Component({
   selector: 'hrs-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
   animations: [
-    trigger('fade', [
+    trigger('slideIn', [
       state(
         'void',
         style({
@@ -33,45 +37,37 @@ import { retrieveHeroesList } from '../state/heroes.actions';
       transition('* <=> void', [animate('0.3s')]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {
-  heroes$ = this.store.pipe(select(selectHeroes));
-  heroes!: Hero[];
+  heroes$ = this.store.select(fromSelector.heroes);
+
   isSelected = false;
   selectedHero?: Hero;
-  isLoading = true;
+  isLoading$ = this.store.select(fromSelector.loading);
 
   constructor(
     private heroesService: HeroesService,
     private dialog: MatDialog,
     private messagesService: MessagesService,
-    private store: Store<AppState>
+    private store: Store<fromStore.HeroesState>
   ) {}
 
   ngOnInit(): void {
     this.getHeroes();
   }
   getHeroes(): void {
-    // this.heroesService.getHeroes().subscribe((Hero) => {
-    //   this.store.dispatch(retrieveHeroesList({ Hero }));
-    //   this.isLoading = !this.isLoading;
-    // });
-    this.heroesService.getHeroes().subscribe((heroes) => {
-      this.heroes = heroes;
-      this.isLoading = !this.isLoading;
-    });
+    this.store.dispatch(loadHeroes());
   }
 
   addHero(name: string): void {
     if (!name) return;
-    this.heroesService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes.unshift(hero);
-    });
+
+    this.store.dispatch(addHero({ payload: { name } as Hero }));
   }
 
   delete(hero: Hero) {
-    this.heroes = this.heroes.filter((h) => h.id !== hero.id);
-    this.heroesService.deleteHero(hero.id).subscribe();
+    this.store.dispatch(removeHero({ payload: hero }));
   }
 
   onSelectHero(hero: Hero) {

@@ -11,11 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../../shared/models/hero';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
-import {
-  getHeroById,
-  loadHeroes,
-  updateHero,
-} from '../store/actions/heroes.actions';
+
+import * as fromActions from '@ng-heroes/heroes/store/actions/heroes.actions';
 import * as fromSelector from '../store/heroes.selectors';
 
 @Component({
@@ -54,7 +51,7 @@ export class HeroDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // Slice the heroes from the store in case of refresh or a crash
-    this.store.dispatch(loadHeroes());
+    this.store.dispatch(fromActions.loadHeroes());
 
     this.getHeroById();
   }
@@ -62,7 +59,7 @@ export class HeroDetailsComponent implements OnInit {
   private getHeroById(): void {
     this.route.params.subscribe((route) => {
       const routeParamId = +route['id'];
-      this.store.dispatch(getHeroById({ heroId: routeParamId }));
+      this.store.dispatch(fromActions.getHeroById({ heroId: routeParamId }));
     });
 
     this.hero$ = this.store.select(fromSelector.hero) as Observable<Hero>;
@@ -73,7 +70,7 @@ export class HeroDetailsComponent implements OnInit {
   }
 
   save(hero: Hero): void {
-    this.store.dispatch(updateHero({ payload: hero }));
+    this.store.dispatch(fromActions.updateHero({ payload: hero }));
     this.goBack();
   }
 }

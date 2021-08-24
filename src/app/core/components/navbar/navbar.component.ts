@@ -8,7 +8,7 @@ import {
   ComponentFactoryResolver,
   ViewChild,
 } from '@angular/core';
-import { MessagesService } from '../../../messages.service';
+import { MessagesService } from '../../../messages/messages.service';
 
 @Component({
   selector: 'hrs-navbar',
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
       return null;
     }
 
-    return length;
+    return length || null;
   }
 
   displayMsgNumber(): string {

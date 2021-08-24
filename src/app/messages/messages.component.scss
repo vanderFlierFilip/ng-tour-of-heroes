@@ -1,25 +1,41 @@
+@mixin set-fixed-overlay(
+  $position,
+  $top,
+  $left,
+  $width,
+  $height,
+  $z-index,
+  $background-color
+) {
+  position: $position;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  z-index: $z-index;
+  background-color: $background-color;
+}
+
 .backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 50;
-  background-color: rgb(0, 0, 0, 0.75);
+  @include set-fixed-overlay(fixed, 0, 0, 100vw, 100vh, 50, rgb(0, 0, 0, 0.75));
   margin-top: 0;
 }
 
 .messages {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  top: 20px;
-  left: 15vh;
-  width: 60vw;
+  @include set-fixed-overlay(fixed, 20px, 25vw, 60vw, 60vh, 100, #ffffff);
+  border-radius: 4px;
   padding: 16px;
-  z-index: 100;
-  background-color: rgb(255, 255, 255);
+
   color: black;
   margin: 0;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 }

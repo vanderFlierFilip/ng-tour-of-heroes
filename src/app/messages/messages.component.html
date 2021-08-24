@@ -1,22 +1,45 @@
 <div class="backdrop" (click)="close()"></div>
 
-<div class="container">
-  <div class="messages">
-    <h2>Messages:</h2>
-
-    <div *ngIf="messagesService.messages.length" @fade>
-      <div *ngFor="let message of messagesService.messages">
-        {{ message }}
-      </div>
-    </div>
+<div class="messages">
+  <div class="header">
     <button
-      *ngIf="messagesService.messages.length"
+      *ngIf="!(isHandset$ | async)"
+      mat-raised-button
+      color="accent"
+      (click)="close()"
+    >
+      Close
+    </button>
+    <button
+      mat-icon-button
+      *ngIf="isHandset$ | async"
+      color="accent"
+      (click)="close()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <h2>Messages:</h2>
+    <button
+      *ngIf="!(isHandset$ | async)"
       mat-raised-button
       color="warn"
       (click)="deleteMessages()"
     >
       Clear messages
     </button>
-    <button mat-raised-button color="accent" (click)="close()">Close</button>
+    <button
+      mat-icon-button
+      *ngIf="isHandset$ | async"
+      color="warn"
+      (click)="deleteMessages()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="messagesService.messages.length" @fade class="message-box">
+    <div *ngFor="let message of messagesService.messages">
+      {{ message }}
+    </div>
   </div>
 </div>

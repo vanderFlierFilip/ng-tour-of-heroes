@@ -1,4 +1,4 @@
-import { MessagesService } from './../messages.service';
+import { MessagesService } from './messages.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   trigger,

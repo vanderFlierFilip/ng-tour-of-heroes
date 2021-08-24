@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Hero } from '../shared/models/hero';
 import { HeroesService } from './services/heroes.service';
-import { MessagesService } from '../messages.service';
+import { MessagesService } from '../messages/messages.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
 import {
@@ -47,7 +47,6 @@ export class HeroesComponent implements OnInit {
   isLoading$ = this.store.select(fromSelector.loading);
 
   constructor(
-    private heroesService: HeroesService,
     private dialog: MatDialog,
     private messagesService: MessagesService,
     private store: Store<fromStore.HeroesState>

@@ -43,9 +43,6 @@ export class SearchComponent implements OnInit {
     this.searchTerms.next(term);
     this.store.dispatch(searchHero({ query: term }));
     this.heroes$ = this.store.select(fromSelector.heroesResults);
-    this.store.select(fromSelector.heroesResults).subscribe((heroes) => {
-      this.heroesLength$ = heroes.length;
-    });
   }
   ngOnInit() {}
 }

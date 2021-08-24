@@ -21,3 +21,21 @@
   grid-column-start: $start;
   grid-column-end: $end;
 }
+
+@mixin set-fixed-overlay(
+  $position,
+  $top,
+  $left,
+  $width,
+  $height,
+  $z-index,
+  $background-color
+) {
+  position: $position;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  z-index: $z-index;
+  background-color: $background-color;
+}

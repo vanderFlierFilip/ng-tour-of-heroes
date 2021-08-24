@@ -1,20 +1,4 @@
-@mixin set-fixed-overlay(
-  $position,
-  $top,
-  $left,
-  $width,
-  $height,
-  $z-index,
-  $background-color
-) {
-  position: $position;
-  top: $top;
-  left: $left;
-  width: $width;
-  height: $height;
-  z-index: $z-index;
-  background-color: $background-color;
-}
+@import "mixins";
 
 .backdrop {
   @include set-fixed-overlay(fixed, 0, 0, 100vw, 100vh, 50, rgb(0, 0, 0, 0.75));

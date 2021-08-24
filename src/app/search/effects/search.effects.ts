@@ -28,7 +28,6 @@ export class SearchEffects {
         return this.searchService.searchHero(query).pipe(
           takeUntil(nextSearch$),
           map((heroes: Hero[]) => {
-            console.log(heroes);
             return searchActions.searchHeroSuccess({ heroes });
           }),
           catchError((error) => {

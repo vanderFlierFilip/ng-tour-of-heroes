@@ -1,4 +1,4 @@
-import { MessagesService } from './../messages.service';
+import { MessagesService } from '../messages/messages.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';

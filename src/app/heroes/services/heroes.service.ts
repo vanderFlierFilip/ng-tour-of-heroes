@@ -1,4 +1,4 @@
-import { MessagesService } from '../../messages.service';
+import { MessagesService } from '../../messages/messages.service';
 import { HEROES } from '../../mock-heroes';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';

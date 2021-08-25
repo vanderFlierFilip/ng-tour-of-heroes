@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'hrs-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.scss'],
+  template: `<mat-spinner *ngIf="condition"></mat-spinner> `,
+  styles: [],
 })
 export class SpinnerComponent implements OnInit {
   @Input()

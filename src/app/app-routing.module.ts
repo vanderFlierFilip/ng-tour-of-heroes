@@ -1,9 +1,9 @@
+import { PageNotFoundComponent } from './shared/components/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'heroes',
     loadChildren: () =>
@@ -13,8 +13,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((mod) => mod.DashboardModule),
+    data: { preload: true },
   },
   { path: 'messages', component: MessagesComponent },
+
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

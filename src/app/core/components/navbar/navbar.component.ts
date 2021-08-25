@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
 
   // Eventually this logic can be transferred to the service to make this component more presentational
   getMessagesLength(): number | null {
-    const length = this.messagesService.messages.length;
+    const length = this.messagesService.getMessagesLength();
 
     if (length === 0) {
       return null;

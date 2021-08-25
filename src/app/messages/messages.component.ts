@@ -9,7 +9,7 @@ import {
 } from '@angular/animations';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, share, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'hrs-messages',
@@ -24,19 +24,24 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MessagesComponent implements OnInit {
   isDelete = false;
+  messages$!: Observable<string[] | null>;
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
-      shareReplay()
+      share()
     );
   @Output() closeEvent = new EventEmitter();
+
   constructor(
     public messagesService: MessagesService,
     private breakpointObserver: BreakpointObserver
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.messages$ = this.messagesService.messages$;
+  }
 
   deleteMessages(): void {
     this.messagesService.clear();

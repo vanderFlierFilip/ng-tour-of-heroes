@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Hero } from '@ng-heroes/shared/models/hero';
 
 @Component({
@@ -12,6 +11,14 @@ export class HeroDetailsViewComponent implements OnInit {
   @Input() isLoading!: boolean | null;
   @Output() save = new EventEmitter();
   @Output() navigateBack = new EventEmitter();
+
+  get id() {
+    return this.hero?.id;
+  }
+
+  get name() {
+    return this.hero?.name;
+  }
 
   constructor() {}
 

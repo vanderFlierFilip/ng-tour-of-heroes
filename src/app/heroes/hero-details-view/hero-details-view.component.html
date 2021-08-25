@@ -1,9 +1,9 @@
 <hrs-spinner [condition]="isLoading"></hrs-spinner>
 <div *ngIf="!isLoading" class="details-body">
   <div *ngIf="hero">
-    <h2>{{ hero.name | uppercase }} Details</h2>
+    <h2>{{ name | uppercase }} Details</h2>
     <div>
-      <h3><span>ID:</span> {{ hero.id }}</h3>
+      <h3><span>ID:</span> {{ id }}</h3>
     </div>
 
     <mat-form-field appearance="fill">

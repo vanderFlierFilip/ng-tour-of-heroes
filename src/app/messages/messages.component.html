@@ -37,9 +37,11 @@
     </button>
   </div>
 
-  <div *ngIf="messagesService.messages.length" @fade class="message-box">
-    <div *ngFor="let message of messagesService.messages">
-      {{ message }}
+  <div *ngFor="let message of messages$ | async" @fade class="message-box">
+    <div>
+      <p>
+        {{ message }}
+      </p>
     </div>
   </div>
 </div>

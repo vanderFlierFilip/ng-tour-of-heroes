@@ -1,7 +1,3 @@
-import { SearchEffects } from '../search/effects/search.effects';
-import { SearchHeroMobileComponent } from '../search/search-hero-mobile/search-hero-mobile.component';
-import { SearchHeroComponent } from '../search/search-hero/search-hero.component';
-import { SearchComponent } from '../search/search.component';
 import { HeroEffects } from './store/effects/hero.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { heroesReducer, featureKey } from './store/reducers/heroes.reducer';
@@ -10,7 +6,6 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './../material/material.module';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';

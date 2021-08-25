@@ -89,6 +89,7 @@ export class HeroesService {
 
   // helper methods
   private log(message: string) {
+    console.log(message);
     this.messagesService.add(message);
   }
 

@@ -13,7 +13,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { Store, select, StoreModule } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {
   loadHeroes,
   addHero,

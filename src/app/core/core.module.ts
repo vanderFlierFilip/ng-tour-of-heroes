@@ -9,6 +9,7 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MsgNumHelperPipe } from './msg-num-helper.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     SideNavComponent,
     MsgModalDirective,
+    MsgNumHelperPipe,
   ],
   imports: [
     CommonModule,

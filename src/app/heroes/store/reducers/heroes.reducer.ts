@@ -15,7 +15,7 @@ export interface HeroesState {
 
 export const initialState: HeroesState = {
   heroList: [],
-  hero: { id: 0, name: '' },
+  hero: { id: 0, name: '', rating: 1 },
   loading: false,
 
   error: new Error(),

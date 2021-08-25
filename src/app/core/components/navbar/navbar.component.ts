@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild(MsgModalDirective, { static: true, read: MsgModalDirective })
   msgModalHost!: MsgModalDirective;
   closeSub!: Subscription;
+  msgNumValueString!: string;
 
   @Input() condition: any;
   constructor(
@@ -29,26 +30,16 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // Eventually this logic can be transferred to the service to make this component more presentational
-  getMessagesLength(): number | null {
-    const length = this.messagesService.getMessagesLength();
+  getMessagesLength(): string | null {
+    const msgLength = this.messagesService.getMessagesLength();
+    this.msgNumValueString = msgLength?.toString()!;
 
-    if (length === 0) {
-      return null;
-    }
-
-    return length || null;
+    return this.msgNumValueString === '0' ? null : this.msgNumValueString;
   }
 
-  displayMsgNumber(): string {
-    const msgNumber = this.getMessagesLength();
-
-    if (!msgNumber) {
-      return `You have no messages`;
-    }
-    return `You have ${
-      msgNumber === 1 ? `${msgNumber} message` : `${msgNumber} messages`
-    }`;
+  getMsgLengthNum() {
+    const msgLength = this.messagesService.getMessagesLength();
+    return msgLength === 0 ? null : msgLength;
   }
 
   loadComponent() {

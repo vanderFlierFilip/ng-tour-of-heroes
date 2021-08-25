@@ -34,7 +34,7 @@
       [matBadge]="getMessagesLength()"
       matBadgeColor="warn"
       #tooltip="matTooltip"
-      [matTooltip]="displayMsgNumber()"
+      [matTooltip]="msgNumValueString | msgNumHelper"
       style="cursor: pointer"
       (click)="loadComponent()"
       >messages</mat-icon

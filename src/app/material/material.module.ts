@@ -12,7 +12,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatDateFormats } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [],
   imports: [
@@ -34,6 +36,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatListModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatDatepickerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -54,6 +58,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatListModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatDatepickerModule,
   ],
 })
 export class MaterialModule {}

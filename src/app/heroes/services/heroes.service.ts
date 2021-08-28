@@ -42,6 +42,8 @@ export class HeroesService {
     return this.http.put(url, hero).pipe(
       tap((_) => {
         const message = `Heroes Service: updated hero with id: ${hero.id}`;
+        console.log(hero);
+
         this.log(message);
       }),
       catchError(this.handleError<any>('updateHero'))
@@ -95,8 +97,6 @@ export class HeroesService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
-
       this.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);

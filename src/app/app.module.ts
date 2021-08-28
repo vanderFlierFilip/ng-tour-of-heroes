@@ -4,7 +4,7 @@ import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,9 +18,10 @@ import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
 
 @NgModule({
-  declarations: [AppComponent, MessagesComponent],
+  declarations: [AppComponent, MessagesComponent, AssignmentFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,8 +33,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     DashboardModule,
     SearchModule,
-
     CoreModule,
+    ReactiveFormsModule,
 
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,

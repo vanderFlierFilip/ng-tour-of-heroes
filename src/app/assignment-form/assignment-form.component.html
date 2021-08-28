@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Emergency</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      formControlName="emergency"
+      cdkAutosizeMaxRows="5"
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Location</mat-label>
+    <input matInput formControlName="location" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Hero</mat-label>
+    <mat-select formControlName="hero">
+      <mat-option *ngFor="let hero of heroes" [value]="hero.name">{{
+        hero.name
+      }}</mat-option>
+    </mat-select>
+    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+  </mat-form-field>
+</form>
+
+<pre>{{ form.value | json }}</pre>

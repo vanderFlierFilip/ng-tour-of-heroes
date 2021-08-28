@@ -1,8 +1,6 @@
 import * as fromStore from './store/reducers/heroes.reducer';
-import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Hero } from '../shared/models/hero';
-import { HeroesService } from './services/heroes.service';
 import { MessagesService } from '../messages/messages.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
@@ -45,7 +43,9 @@ export class HeroesComponent implements OnInit {
   isSelected = false;
   selectedHero?: Hero;
   isLoading$ = this.store.select(fromSelector.loading);
-
+  heroRating!: number;
+  heroRatingArr!: Array<number>;
+  isEditMode = false;
   constructor(
     private dialog: MatDialog,
     private messagesService: MessagesService,
@@ -54,6 +54,8 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHeroes();
+    this.heroRatingArr = Array(this.heroRating);
+    console.log(this.heroRatingArr);
   }
   getHeroes(): void {
     this.store.dispatch(loadHeroes());

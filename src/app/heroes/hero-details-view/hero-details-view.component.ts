@@ -11,7 +11,9 @@ export class HeroDetailsViewComponent implements OnInit {
   @Input() isLoading!: boolean | null;
   @Output() save = new EventEmitter();
   @Output() navigateBack = new EventEmitter();
-
+  rating!: number;
+  @Input() heroRating!: number;
+  @Input() editMode!: boolean;
   get id() {
     return this.hero?.id;
   }
@@ -24,11 +26,18 @@ export class HeroDetailsViewComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  setRating(rating: number) {
+    this.rating = rating;
+  }
   onSave($event: string) {
     // Only god can judge me :)
     const newHeroName = $event;
     const heroId = this.hero?.id;
 
-    this.save.emit({ id: heroId, name: newHeroName } as Hero);
+    this.save.emit({
+      id: heroId,
+      name: newHeroName,
+      rating: this.rating,
+    } as Hero);
   }
 }

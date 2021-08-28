@@ -4,7 +4,7 @@ import { heroesReducer, featureKey } from './store/reducers/heroes.reducer';
 import { StoreModule } from '@ngrx/store';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { SharedModule } from './../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,8 @@ import { HeroesMenuComponent } from './heroes-menu/heroes-menu.component';
 import { HeroesComponent } from './heroes.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { HeroDetailsViewComponent } from './hero-details-view/hero-details-view.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
+import { RatingColorDirective } from './rating-color.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HeroDetailsViewComponent } from './hero-details-view/hero-details-view.
     HeroesMenuComponent,
     CreateHeroDialogComponent,
     HeroDetailsViewComponent,
+    HeroFormComponent,
+    RatingColorDirective,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,8 @@ import { HeroDetailsViewComponent } from './hero-details-view/hero-details-view.
     CdkAccordionModule,
     SharedModule,
     HeroesRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     StoreModule.forFeature('heroes', heroesReducer),
 
     EffectsModule.forFeature([HeroEffects]),

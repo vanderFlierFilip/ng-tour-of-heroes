@@ -1,3 +1,4 @@
+<!-- TODO: Refactor this pls -->
 <div class="grid-col-3x1">
   <div class="accordion spinner">
     <hrs-spinner [condition]="isLoading$ | async"></hrs-spinner>
@@ -20,7 +21,7 @@
         <div class="accordion-item-body">
           <div>
             <h2>{{ hero.name | uppercase }}</h2>
-
+            <hrs-rating-static [setRating]="hero.rating"></hrs-rating-static>
             <div><span>id: </span>{{ hero.id }}</div>
             <a routerLink="/detail/{{ hero.id }}">
               <span class="detail-navigation">Go to details</span></a

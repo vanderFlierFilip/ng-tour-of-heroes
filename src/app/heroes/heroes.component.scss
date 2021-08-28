@@ -18,8 +18,11 @@
 
   &-item-header,
   &-item-body {
-    @include d-flex;
+    @include d-flex();
     padding: 16px;
+    #star {
+      align-self: flex-start;
+    }
   }
   &-item {
     display: block;

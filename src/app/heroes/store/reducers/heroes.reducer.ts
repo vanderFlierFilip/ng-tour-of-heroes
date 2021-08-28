@@ -11,14 +11,20 @@ export interface HeroesState {
   hero: Hero;
   loading: boolean;
   error: Error;
+  heroName: string;
+  editMode: boolean;
+  heroRating: number;
 }
 
 export const initialState: HeroesState = {
   heroList: [],
-  hero: { id: 0, name: '', rating: 1 },
+  hero: { id: 0, name: '', rating: 0, assignments: [] },
   loading: false,
 
   error: new Error(),
+  heroName: '',
+  editMode: false,
+  heroRating: 0,
 };
 
 export const heroesReducer = createReducer(
@@ -108,6 +114,7 @@ export const heroesReducer = createReducer(
     return {
       ...state,
       loading: true,
+      editMode: false,
     };
   }),
   on(heroApiActions.getHeroByIdSuccess, (state, action) => {
@@ -117,6 +124,9 @@ export const heroesReducer = createReducer(
         (hero) => hero.id === action.payload.id
       ) as Hero,
       loading: false,
+      heroName: action.payload.name,
+      editMode: true,
+      heroRating: action.payload.rating,
     };
   }),
   on(heroApiActions.getHeroByIdFailure, (state, { error }) => {
@@ -131,3 +141,6 @@ export const heroesReducer = createReducer(
 export const selectHeroesList = (state: HeroesState) => state.heroList || [];
 export const selectLoading = (state: HeroesState) => state.loading;
 export const selectHero = (state: HeroesState) => state.hero;
+export const selectHeroName = (state: HeroesState) => state.heroName!;
+export const selectEditModeValue = (state: HeroesState) => state.editMode!;
+export const selectHeroRating = (state: HeroesState) => state.heroRating;

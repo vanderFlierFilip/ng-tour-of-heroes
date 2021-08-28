@@ -1,10 +1,11 @@
+import { getHeroByIdSuccess } from './../actions/heroes.api.actions';
 import { HeroesService } from '../../services/heroes.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as heroActions from '../actions/heroes.actions';
 import * as heroApiActions from '../actions/heroes.api.actions';
 
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
@@ -29,7 +30,7 @@ export class HeroEffects {
   getHeroById$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.getHeroById),
-      mergeMap((action) => {
+      switchMap((action) => {
         return this.heroesService.getHero(action.heroId).pipe(
           map((data) => {
             return heroApiActions.getHeroByIdSuccess({ payload: data });

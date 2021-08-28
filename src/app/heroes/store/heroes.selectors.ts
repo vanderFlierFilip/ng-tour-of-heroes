@@ -12,3 +12,17 @@ export const heroes = createSelector(
 export const hero = createSelector(heroesSelector, fromStore.selectHero);
 
 export const loading = createSelector(heroesSelector, fromStore.selectLoading);
+
+export const heroName = createSelector(
+  heroesSelector,
+  fromStore.selectHeroName
+);
+
+export const editMode = createSelector(
+  heroesSelector,
+  fromStore.selectEditModeValue
+);
+export const selectHeroRating = createSelector(
+  heroesSelector,
+  fromStore.selectHeroRating
+);

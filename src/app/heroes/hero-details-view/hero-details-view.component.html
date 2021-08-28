@@ -5,7 +5,11 @@
     <div>
       <h3><span>ID:</span> {{ id }}</h3>
     </div>
-
+    <hrs-rating
+      (onRating)="setRating($event)"
+      [selectedRate]="heroRating"
+      [editMode]="editMode"
+    ></hrs-rating>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input #input matInput type="text" [value]="hero.name" />

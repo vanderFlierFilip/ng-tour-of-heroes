@@ -1,7 +1,7 @@
-import { Assignment } from './assignment.model';
+import { Crisis } from './crisis.model';
 export interface Hero {
   id: number;
   name: string;
   rating: number;
-  assignments: Assignment[];
+  assignments: Crisis[];
 }

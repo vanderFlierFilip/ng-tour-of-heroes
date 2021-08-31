@@ -1,5 +1,3 @@
-import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
-import { PageNotFoundComponent } from './shared/components/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +15,6 @@ const routes: Routes = [
     data: { preload: true },
   },
   { path: 'messages', component: MessagesComponent },
-  { path: 'assign', component: AssignmentFormComponent },
 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

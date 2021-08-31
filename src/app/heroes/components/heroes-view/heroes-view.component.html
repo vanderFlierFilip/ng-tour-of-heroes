@@ -1,17 +1,19 @@
-<!-- TODO: Refactor this pls -->
 <div class="grid-col-3x1">
   <div class="accordion spinner">
-    <hrs-spinner [condition]="isLoading$ | async"></hrs-spinner>
+    <hrs-spinner [condition]="isLoading"></hrs-spinner>
   </div>
-
-  <mat-accordion class="accordion" *ngIf="!(isLoading$ | async)">
+  <mat-accordion class="accordion" *ngIf="!isLoading">
     <div class="title">
-      <button matTooltip="Add new hero" mat-icon-button (click)="openDialog()">
+      <button
+        matTooltip="Add new hero"
+        mat-icon-button
+        (click)="openDialogEvent.emit()"
+      >
         <mat-icon>add_circle_outline</mat-icon>
       </button>
     </div>
-    <mat-expansion-panel hideToggle *ngFor="let hero of heroes$ | async">
-      <mat-expansion-panel-header @slideIn (click)="onSelectHero(hero)">
+    <mat-expansion-panel hideToggle *ngFor="let hero of heroes">
+      <mat-expansion-panel-header @slideIn (click)="selectHeroEvent.emit(hero)">
         <mat-panel-title>
           <span>{{ hero.id }}</span>
         </mat-panel-title>
@@ -30,7 +32,7 @@
           <div class="spacer"></div>
           <div>
             <button
-              (click)="delete(hero)"
+              (click)="deleteHeroEvent.emit(hero)"
               mat-raised-button
               color="warn"
               class="btn"

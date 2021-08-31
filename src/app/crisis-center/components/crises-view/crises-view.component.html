@@ -1,0 +1,31 @@
+<div class="center">
+  <button routerLink="/crisis-form" mat-raised-button color="warn">
+    REPORT CRISIS
+  </button>
+</div>
+
+<div class="container">
+  <mat-card class="item" *ngFor="let crisis of crises">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon
+          [matTooltip]="crisis.dangerLevel | dangerLvl"
+          style="font-size: 50px"
+          [dangerLevel]="crisis.dangerLevel"
+          >report</mat-icon
+        >
+      </div>
+      <mat-card-title>{{ crisis.emergency }}</mat-card-title>
+      <mat-card-subtitle>{{ crisis.location }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ crisis.description }}
+      </p>
+
+      <h3>Assigned Hero</h3>
+      <h4>{{ crisis.hero?.name! }}</h4>
+    </mat-card-content>
+    <mat-card-actions> </mat-card-actions>
+  </mat-card>
+</div>

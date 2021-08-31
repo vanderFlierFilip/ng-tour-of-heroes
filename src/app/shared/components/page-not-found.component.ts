@@ -2,19 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'hrs-page-not-found',
-  template: `
-    <p>
-      page-not-found works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: ` <h1>404 Page not found :(</h1> `,
+  styles: [],
 })
 export class PageNotFoundComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -18,7 +18,6 @@ import { skip } from 'rxjs/operators';
         (save)="save($event)"
         [isLoading]="(isLoading$ | async)!"
         (navigateBack)="goBack()"
-        [editMode]="(isEditMode | async)!"
         [heroRating]="(heroRating$ | async)!"
       >
       </hrs-hero-details-view>
@@ -38,10 +37,8 @@ import { skip } from 'rxjs/operators';
 export class HeroDetailsComponent implements OnInit {
   hero$!: Observable<Hero>;
   routeParamId!: number;
-  subject!: Subject<Hero>;
   isLoading$ = this.store.select(fromSelector.loading)!;
   heroRating$!: Observable<number>;
-  isEditMode!: Observable<boolean>;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -54,9 +51,6 @@ export class HeroDetailsComponent implements OnInit {
 
     this.getHeroById();
 
-    this.isEditMode.subscribe((value) => console.log(value));
-    // this.heroRating$.subscribe((value) => console.log(value));
-    this.isLoading$.subscribe((value) => console.log(value));
     this.heroRating$ = this.store
       .select(fromSelector.selectHeroRating)
       .pipe(skip(1));
@@ -65,19 +59,10 @@ export class HeroDetailsComponent implements OnInit {
   private getHeroById(): void {
     this.route.params.subscribe((route) => {
       this.routeParamId = +route['id'];
-      // this.store.select(fromSelector.heroes).subscribe((heroes) => {
-      //   this.heroes = heroes;
-      // });
 
       this.store.dispatch(
         fromActions.getHeroById({ heroId: this.routeParamId })
       );
-
-      this.isEditMode = this.store.select(
-        fromSelector.editMode
-      ) as Observable<boolean>;
-      this.isEditMode.subscribe((value) => console.log(value));
-      // this.heroRating$.subsscribe((value) => console.log(value));
 
       this.hero$ = this.store.select(fromSelector.hero) as Observable<Hero>;
     });
@@ -86,22 +71,9 @@ export class HeroDetailsComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  onRate() {}
 
   save(hero: Hero): void {
     this.store.dispatch(fromActions.updateHero({ payload: hero }));
     this.goBack();
   }
 }
-
-// this.store.select(fromSelector.heroes).subscribe((heroes) => {
-//   this.heroes = heroes;
-// });
-// for (let hero of this.heroes) {
-//   if (
-//     this.heroes.some((heroFromStore) => heroFromStore.id < hero.id) ||
-//     this.heroes.some((heroFromStore) => heroFromStore.id > hero.id)
-//   ) {
-//     // this.router.navigate(['**']);
-//     console.log(routeParamId, hero.id);
-// }

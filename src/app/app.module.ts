@@ -1,3 +1,4 @@
+import { CrisisCenterModule } from './crisis-center/crisis-center.module';
 import { SearchModule } from './search/search.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
@@ -18,16 +19,16 @@ import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { AssignmentFormComponent } from './assignment-form/assignment-form.component';
 
 @NgModule({
-  declarations: [AppComponent, MessagesComponent, AssignmentFormComponent],
+  declarations: [AppComponent, MessagesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CrisisCenterModule,
     FormsModule,
     MaterialModule,
     HttpClientModule,

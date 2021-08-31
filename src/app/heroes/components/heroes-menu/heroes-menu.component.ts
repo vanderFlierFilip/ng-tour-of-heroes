@@ -1,8 +1,8 @@
-import * as fromStore from '../store/reducers/heroes.reducer';
+import * as fromStore from '../../store/reducers/heroes.reducer';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Hero } from '../../shared/models/hero';
-import * as fromSelector from './../store/heroes.selectors';
+import { Hero } from '../../../shared/models/hero';
+import * as fromSelector from '../../store/heroes.selectors';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as fromActions from '@ng-heroes/heroes/store/actions/heroes.actions';

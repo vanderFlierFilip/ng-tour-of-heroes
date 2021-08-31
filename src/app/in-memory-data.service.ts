@@ -19,7 +19,42 @@ export class InMemoryDataService {
       { id: 19, name: 'Magma', rating: 1 },
       { id: 20, name: 'Tornado', rating: 2 },
     ];
-    return { heroes };
+    // id: string;
+    // emergency: string;
+    // location: string;
+    // date: Date;
+    // dangerLevel: number;
+    // assignedHero: Hero;
+    const crises = [
+      {
+        id: 1,
+        emergency: 'Giant ants attacking my city',
+        description:
+          'The ants are so big and they are eating us people alive, while they are just working like they usually are... PLZ SEND HELP IMMEDIATELY!!!!!!!!!!!!!!!!!',
+        location: 'Negotino',
+        dangerLevel: 25,
+        hero: { id: 20, name: 'Tornado', rating: 2 },
+      },
+      {
+        id: 2,
+        emergency: 'Giant ants attacking my city',
+        description:
+          'The ants are so big and they are eating us people alive, while they are just working like they usually are... PLZ SEND HELP IMMEDIATELY!!!!!!!!!!!!!!!!!',
+        location: 'Negotino',
+        dangerLevel: 50,
+        hero: { id: 20, name: 'Tornado', rating: 2 },
+      },
+      {
+        id: 3,
+        emergency: 'Giant ants attacking my city',
+        description:
+          'The ants are so big and they are eating us people alive, while they are just working like they usually are... PLZ SEND HELP IMMEDIATELY!!!!!!!!!!!!!!!!!',
+        location: 'Skopje',
+        dangerLevel: 100,
+        hero: { id: 20, name: 'Tornado', rating: 2 },
+      },
+    ];
+    return { heroes, crises };
   }
   genId(heroes: Hero[]): number {
     return heroes.length > 0

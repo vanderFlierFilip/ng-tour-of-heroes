@@ -1,3 +1,4 @@
+import { HeroesViewComponent } from './components/heroes-view/heroes-view.component';
 import { HeroEffects } from './store/effects/hero.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { heroesReducer, featureKey } from './store/reducers/heroes.reducer';
@@ -8,14 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
-import { HeroDetailsComponent } from './hero-details/hero-details.component';
-import { HeroesMenuComponent } from './heroes-menu/heroes-menu.component';
-import { HeroesComponent } from './heroes.component';
+import { CreateHeroDialogComponent } from './components/create-hero-dialog/create-hero-dialog.component';
+import { HeroDetailsComponent } from './containers/hero-details.component';
+import { HeroesMenuComponent } from './components/heroes-menu/heroes-menu.component';
+import { HeroesComponent } from './containers/heroes.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { HeroDetailsViewComponent } from './hero-details-view/hero-details-view.component';
-import { HeroFormComponent } from './hero-form/hero-form.component';
-import { RatingColorDirective } from './rating-color.directive';
+import { HeroDetailsViewComponent } from './components/hero-details-view/hero-details-view.component';
+import { RatingColorDirective } from './directives/rating-color.directive';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { RatingColorDirective } from './rating-color.directive';
     HeroesMenuComponent,
     CreateHeroDialogComponent,
     HeroDetailsViewComponent,
-    HeroFormComponent,
     RatingColorDirective,
+    HeroesViewComponent,
   ],
   imports: [
     CommonModule,

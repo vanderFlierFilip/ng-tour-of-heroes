@@ -15,9 +15,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDateFormats } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+
 @NgModule({
   declarations: [],
   imports: [
+    MatSliderModule,
     MatToolbarModule,
     MatBadgeModule,
     MatListModule,
@@ -38,6 +43,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatExpansionModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
   ],
   exports: [
     MatToolbarModule,
@@ -60,6 +70,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatExpansionModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    MatSliderModule,
   ],
 })
 export class MaterialModule {}

@@ -1,41 +1,33 @@
-import * as fromStore from './store/reducers/heroes.reducer';
+import * as fromStore from '../store/reducers/heroes.reducer';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Hero } from '../shared/models/hero';
-import { MessagesService } from '../messages/messages.service';
+import { Hero } from '../../shared/models/hero';
+import { MessagesService } from '../../messages/messages.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateHeroDialogComponent } from './create-hero-dialog/create-hero-dialog.component';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { CreateHeroDialogComponent } from '../components/create-hero-dialog/create-hero-dialog.component';
+
 import { Store, select } from '@ngrx/store';
 import {
   loadHeroes,
   addHero,
   removeHero,
-} from './store/actions/heroes.actions';
-import * as fromSelector from './store/heroes.selectors';
-
+} from '../store/actions/heroes.actions';
+import * as fromSelector from '../store/heroes.selectors';
 @Component({
   selector: 'hrs-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.scss'],
-  animations: [
-    trigger('slideIn', [
-      state(
-        'void',
-        style({
-          transform: 'translateX(-100%)',
-          opacity: 0,
-        })
-      ),
-      transition('* <=> void', [animate('0.3s')]),
-    ]),
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <hrs-heroes-view
+      [heroes]="(heroes$ | async)!"
+      [isLoading]="(isLoading$ | async)!"
+      [selectedHero]="selectedHero!"
+      [heroRating]="heroRating"
+      [heroRatingArr]="heroRatingArr"
+      (selectHeroEvent)="onSelectHero($event)"
+      (deleteHeroEvent)="delete($event)"
+      (openDialogEvent)="openDialog()"
+    >
+    </hrs-heroes-view>
+  `,
+  styles: [],
 })
 export class HeroesComponent implements OnInit {
   heroes$ = this.store.select(fromSelector.heroes);
@@ -45,7 +37,6 @@ export class HeroesComponent implements OnInit {
   isLoading$ = this.store.select(fromSelector.loading);
   heroRating!: number;
   heroRatingArr!: Array<number>;
-  isEditMode = false;
   constructor(
     private dialog: MatDialog,
     private messagesService: MessagesService,
@@ -55,7 +46,6 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.getHeroes();
     this.heroRatingArr = Array(this.heroRating);
-    console.log(this.heroRatingArr);
   }
   getHeroes(): void {
     this.store.dispatch(loadHeroes());

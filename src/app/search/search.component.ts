@@ -1,14 +1,12 @@
 import * as fromSearch from './reducers/search.reducer';
 import * as fromSelector from './selectors/search.selectors';
 
-import { searchHero } from './actions/search.actions';
-import { SearchService } from './search.service';
+import { hideList, searchHero } from './actions/search.actions';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { fromEvent, Observable, Subject } from 'rxjs';
 
 import { Hero } from '../shared/models/hero';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'hrs-search',
@@ -44,5 +42,10 @@ export class SearchComponent implements OnInit {
     this.store.dispatch(searchHero({ query: term }));
     this.heroes$ = this.store.select(fromSelector.heroesResults);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    const clicks = fromEvent(document, 'click');
+    clicks.subscribe(() => {
+      this.store.dispatch(hideList());
+    });
+  }
 }

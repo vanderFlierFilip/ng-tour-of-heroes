@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Hero } from '@ng-heroes/shared/models/hero';
 
 import * as searchActions from '../actions/search.actions';
+import { state } from '@angular/animations';
 
 export const searchFeatureKey = 'search';
 
@@ -49,6 +50,12 @@ export const reducer = createReducer(
     return {
       ...state,
       error: error,
+    };
+  }),
+  on(searchActions.hideList, (state) => {
+    return {
+      ...state,
+      showList: false,
     };
   })
 );

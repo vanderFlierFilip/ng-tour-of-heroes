@@ -34,12 +34,8 @@ export class NavbarComponent implements OnInit {
     const msgLength = this.messagesService.getMessagesLength();
     this.msgNumValueString = msgLength?.toString()!;
 
+    // don't display the value 0 and the badge in the view
     return this.msgNumValueString === '0' ? null : this.msgNumValueString;
-  }
-
-  getMsgLengthNum() {
-    const msgLength = this.messagesService.getMessagesLength();
-    return msgLength === 0 ? null : msgLength;
   }
 
   loadComponent() {

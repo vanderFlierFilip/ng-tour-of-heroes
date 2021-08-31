@@ -13,6 +13,14 @@
     <span *ngIf="!condition" class="spacer-md"></span>
 
     <div *ngIf="!condition">
+      <button
+        mat-button
+        [routerLink]="['/crisis-center']"
+        routerLinkActive="active"
+      >
+        Crisis Center
+      </button>
+
       <button mat-button [routerLink]="['/heroes']" routerLinkActive="active">
         Heroes
       </button>

@@ -14,3 +14,4 @@ export const searchHeroFailure = createAction(
   '[Search / API] Search Failure ',
   props<{ error: string }>()
 );
+export const hideList = createAction('[Search] Hide Search List ');

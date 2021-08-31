@@ -7,8 +7,8 @@ import { Hero } from '@ng-heroes/shared/models/hero';
   styleUrls: ['./hero-details-view.component.scss'],
 })
 export class HeroDetailsViewComponent implements OnInit {
-  @Input() hero!: Hero | null;
-  @Input() isLoading!: boolean | null;
+  @Input() hero!: Hero;
+  @Input() isLoading!: boolean;
   @Output() save = new EventEmitter();
   @Output() navigateBack = new EventEmitter();
   rating!: number;
@@ -30,7 +30,6 @@ export class HeroDetailsViewComponent implements OnInit {
     this.rating = rating;
   }
   onSave($event: string) {
-    // Only god can judge me :)
     const newHeroName = $event;
     const heroId = this.hero?.id;
 

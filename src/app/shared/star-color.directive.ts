@@ -18,8 +18,6 @@ export class StarColorDirective implements AfterViewInit {
     this.changeColor();
   }
   @HostListener('mouseover') increaseSize() {}
-  //TODO: Add colors to the element that adhere to material design
-  // https://material.io/resources/color/#!/?view.left=0&view.right=0
 
   changeColor() {
     const rating = this.hrsStarColor;
@@ -27,16 +25,18 @@ export class StarColorDirective implements AfterViewInit {
 
     switch (rating) {
       case 1:
-        el.style.color = 'red';
+        // red
+        el.style.color = '#ba000d';
         break;
       case 2:
-        el.style.color = 'yellow';
+        // orange
+        el.style.color = '#ff9800';
         break;
       case 3:
-        el.style.color = 'pink';
+        el.style.color = '#8bc34a';
         break;
       case 4:
-        el.style.color = 'green';
+        el.style.color = '#e0e0e0';
         break;
       case 5:
         el.style.color = 'gold';

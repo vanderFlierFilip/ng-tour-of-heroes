@@ -8,12 +8,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./heroes/heroes.module').then((mod) => mod.HeroesModule),
   },
+
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((mod) => mod.DashboardModule),
     data: { preload: true },
   },
+
   { path: 'messages', component: MessagesComponent },
 
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

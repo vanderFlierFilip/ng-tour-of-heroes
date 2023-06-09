@@ -7,8 +7,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import * as fromActions from '@ng-heroes/heroes/store/actions/heroes.actions';
 import * as fromSelector from '../store/heroes.selectors';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { skip } from 'rxjs/operators';
+
 @Component({
   selector: 'hrs-hero-details',
   template: `
@@ -52,8 +51,7 @@ export class HeroDetailsComponent implements OnInit {
     this.getHeroById();
 
     this.heroRating$ = this.store
-      .select(fromSelector.selectHeroRating)
-      .pipe(skip(1));
+      .select(fromSelector.selectHeroRating);
   }
 
   private getHeroById(): void {

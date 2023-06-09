@@ -9,7 +9,7 @@ import { Hero } from '../shared/models/hero';
   providedIn: 'root',
 })
 export class SearchService {
-  heroesUrl = 'api/heroes';
+  heroesUrl = 'https://localhost:5001/api/Heroes/search';
 
   constructor(
     private http: HttpClient,

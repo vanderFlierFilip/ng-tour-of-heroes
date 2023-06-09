@@ -10,7 +10,7 @@ import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class HeroesService {
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'https://localhost:5001/api/Heroes';
 
   constructor(
     private http: HttpClient,
@@ -77,7 +77,7 @@ export class HeroesService {
       return of([]);
     }
 
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}/search/?name=${term}`).pipe(
       tap((x) => {
         console.log(term);
         x.length
